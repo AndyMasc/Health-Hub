@@ -6,7 +6,7 @@ h1 {
     font-family: 'Atkinson Hyperlegible';
     font-size: 61px;
     color: #22223b;
-    letter-spacing: 2%;
+    letter-spacing: -0.01em;
     line-height: 100%;
 }
 
@@ -52,6 +52,13 @@ p {
     font-size: 16px;
     color: #22223b;
     text-decoration: none;
+    padding: 8px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    background-color: #cccccc;
 }
 
 .auth-links {
@@ -74,20 +81,19 @@ p {
 
 .hero-section-container {
     display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     min-height: calc(100vh - 61px);
-    justify-content: center;
-    align-items: center;
     margin-top: 61px;
     flex-direction: column;
 }
 
 .hero-section-contents {
     width: 85%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    place-items: center;
+    grid-template-columns: minmax(300px, 1fr) minmax(300px, 1fr);
     gap: 61px;
 }
 
@@ -97,10 +103,10 @@ p {
 }
 
 .CTA-button {
+    margin-top: 61px;
     display: flex;
     justify-content: start;
     gap: 16px;
-    margin-top: 61px;
 }
 
 .CTA-button a {
@@ -112,8 +118,19 @@ p {
     font-family: 'Atkinson Hyperlegible';
     font-size: 1.25rem;
     cursor: pointer;
+    letter-spacing: 0.01em;
 }
 
 .hero-image {
-    width: 45%;
+    width: 100%;
+}
+
+@media (max-width: 1200px) {
+    .hero-section-contents {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+    .hero-image {
+        order: -1;
+    }
 }
