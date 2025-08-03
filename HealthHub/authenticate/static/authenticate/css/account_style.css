@@ -1,0 +1,146 @@
+body {
+    background-color: white;
+    width: 100%;
+    position: absolute;
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    color: #22223b;
+    font-family: "Atkinson Hyperlegible";
+    text-align: center;
+    font-size: 35px;
+}
+
+.option, .danger-zone {
+    border: solid #22223b;
+    border-radius: 10px;
+    padding: 10px 20px;
+    width: 60%;
+    box-sizing: border-box;
+    margin: 0px auto 20px auto;
+}
+
+.danger-zone {
+    background-color: rgb(255, 0, 0, 0.1);
+    border: 2px solid #5c0009;
+    margin: 20px auto 20px auto;
+}
+
+.danger-zone a {
+    text-decoration: none;
+}
+
+.danger-zone h2 {
+    color: #22223b;
+    font-family: "Atkinson Hyperlegible";
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.danger-zone p {
+    color: #ba2b32;
+    font-family: "Atkinson Hyperlegible";
+    font-size: 16px;
+}
+
+.option h2 {
+    color: #22223b;
+    font-family: "Atkinson Hyperlegible";
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.option p {
+    color: #4a4e69;
+    font-family: "Atkinson Hyperlegible";
+    font-size: 16px;
+}
+
+.option a {
+    color: white;
+    font-size: 14px;
+    font-family: "Atkinson Hyperlegible";
+    text-decoration: none;
+}
+
+.del-option, .save-changes, input, .return-home-a {
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: "Atkinson Hyperlegible";
+    font-size: 16px;
+    border-radius: 10px;
+    color: #4a4e69;
+    cursor: pointer;
+    border: solid #22223b;
+    background-color: #f8f9fa;
+    transition: all 0.4s ease;
+    transform: scale(1);
+    margin-bottom: 15px;
+}
+
+.save-changes, .return-home-a {
+    width: 60%;
+    height: 50px;
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    background-color: #4a4e69;
+    border: none;
+    margin: 20px auto 20px auto;
+    display: block;
+}
+
+.save-changes:hover, .return-home-a:hover {
+    background-color: #26282d;
+}
+
+.del-option {
+    background-color: rgb(115, 6, 15, 0.5);
+    width: 100%;
+    margin: 2% auto 2% auto;
+    border: solid #22223b;
+    text-align: center;
+    font-size: 16px;
+}
+
+.del-option:hover {
+    background-color: rgb(115, 9, 13, 1);
+}
+
+.error-text {
+    color: #ba2b32;
+    font-family: "Atkinson Hyperlegible";
+    font-size: 16px;
+}
+
+.success {
+    font-family: "Atkinson Hyperlegible";
+    font-size: 16px;
+    color: #22223b;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.return-home {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 45px;
+}
+
+@media (max-width: 1024px) {
+    .option, .danger-zone {
+        width: 80%;
+    }
+
+    .save-changes, .return-home-a {
+        width: 80%;
+    }
+}

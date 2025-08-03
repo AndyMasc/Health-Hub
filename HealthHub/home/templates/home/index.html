@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'home/css/index_style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="navbar">
+        <div class="logo">
+            <img src="{% static 'home/images/logo.png' %}" alt="Health Hub Logo">
+        </div>
+        <ul>
+            <li> <a href="#about"> About </a> </li>
+            <li> <a href="#features"> Features </a> </li>
+            <li> <a href="#contact"> Contact </a> </li>
+        </ul>
+        <div class="auth-links">
+            {% if user.is_authenticated %} <!-- TODO  Replace True with user.is_authenticated in a real application  -->
+                <a href="{% url 'authenticate:account' %}"> My account </a>
+                <a href="{% url 'authenticate:signout' %}"> Sign out </a>
+            {% else %}
+                <a href="{% url 'authenticate:register' %}"> Register </a>
+                <a href="{% url 'authenticate:signin' %}"> Sign in </a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="hero-section-container">
+        <div class="hero-section-contents">
+            <div class="hero-section-text">
+                <h1> The <mark style="border-radius:10px; padding: 0 8px; background-color:#7ee6ccE0;">only</mark> health app you'll ever use. </h1>
+                <p>
+                    Health Hub is the unified medical platform where health-care professionals and patients connect, communicate, and collaborate
+                    - cohesively. Powered by advanced technology and AI, designed for accessibility, and built to simplify every step of care.
+                </p>
+                <div class="CTA-button">
+                    <a href="#"> Manage your health today </a>
+                    <a href="#about" style="background-color:#4a4e69;"> Learn more </a>
+                </div>
+            </div>
+            <img src="{% static 'home/images/heroImg.png' %}" alt="Hero Image" class="hero-image">
+        </div>
+        <p style="text-align:center; max-width:80%; position:relative; top:10vh;">
+            Built in collaboration with real doctors and real patients at: <br>
+            <b style="color:#4a4e69"> North Shore Hospital & Naylor Palmer Optometery </b>
+        </p>
+    </div>
+{% endblock %}

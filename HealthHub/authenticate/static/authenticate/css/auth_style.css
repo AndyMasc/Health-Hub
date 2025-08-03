@@ -1,0 +1,115 @@
+body {
+    background-color: white;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Atkinson Hyperlegible";
+    min-height: 100vh;
+}
+
+h1 {
+    color: #22223b;
+    font-weight: 500;
+    font-size: 35px;
+    text-align: center;
+}
+
+.form {
+    border-radius: 10px;
+    width: 400px;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.form p {
+    color: #22223b;
+    font-size: 16px;
+}
+
+.form form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+input[type='email'],
+input[type='password'],
+input[type='text'] {
+    background-color: white;
+    color: #22223b;
+    width: 80%;
+    border: solid #22223b;
+    border-radius: 10px;
+    font-size: 16px;
+    height: 50px;
+    padding: 0px 10px;
+}
+
+input[type='submit'] {
+    padding: 8px 10px;
+    width: 80%;
+    font-family: "Atkinson Hyperlegible";
+    font-size: 16px;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    background-color: #1e2025;
+    border: solid 2px #212121;
+    transition: all 0.4s ease;
+    transform: scale(1);
+    margin-bottom: 15px;
+}
+
+input[type='submit']:hover {
+    background-color: #4a4e69;
+}
+
+a {
+    color: blue;
+    text-align: center;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.invalidLogin {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.invalidLogin p, ul {
+    color: #ba2b32;
+    text-align: center;
+    max-width: 80%;
+    list-style:none;
+    padding: 0;
+    font-size: 16px;
+}
+
+@media (max-width: 600px) {
+    .form {
+        width: 80%;
+    }
+
+    input[type='email'],
+    input[type='password'],
+    input[type='text'] {
+        width: 90%;
+    }
+
+    input[type='submit'] {
+        width: 90%;
+    }
+}
