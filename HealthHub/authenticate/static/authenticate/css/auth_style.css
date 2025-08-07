@@ -8,7 +8,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-family: "Atkinson Hyperlegible";
+    font-family: "Inter";
     min-height: 100vh;
 }
 
@@ -46,34 +46,37 @@ h1 {
 
 input[type='email'],
 input[type='password'],
+select,
 input[type='text'] {
     background-color: white;
     color: #22223b;
-    width: 80%;
-    border: solid #22223b;
+    width: 100%;
+    border: solid #cccccc;
     border-radius: 10px;
     font-size: 16px;
     height: 50px;
     padding: 0px 10px;
+    box-sizing: border-box;
 }
 
 input[type='submit'] {
     padding: 8px 10px;
-    width: 80%;
-    font-family: "Atkinson Hyperlegible";
+    width: 100%;
+    font-family: "Inter";
     font-size: 16px;
     border-radius: 10px;
     color: white;
     cursor: pointer;
-    background-color: #1e2025;
+    background-color: #4a4e69;
     border: solid 2px #212121;
     transition: all 0.4s ease;
     transform: scale(1);
     margin-bottom: 15px;
+    box-sizing: border-box;
 }
 
 input[type='submit']:hover {
-    background-color: #4a4e69;
+    background-color: #22223b;
 }
 
 a {

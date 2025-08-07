@@ -37,7 +37,7 @@
             <h2> Danger zone </h2>
             <p> You are authenticated as <b> {{ request.user.username }}. </b> <b> No </b> confirmation prompts will show for these actions, resulting in an <b> immediate and permanent loss of data. </b> </p>
             <a href="{% url 'authenticate:delete_account' %}" class="del-account">
-                <div class="del-option">
+                <div class="del-option" style="color:white;">
                     Delete account
                 </div>
             </a>

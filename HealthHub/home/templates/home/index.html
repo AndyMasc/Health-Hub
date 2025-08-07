@@ -16,33 +16,45 @@
             <li> <a href="#contact"> Contact </a> </li>
         </ul>
         <div class="auth-links">
-            {% if user.is_authenticated %} <!-- TODO  Replace True with user.is_authenticated in a real application  -->
-                <a href="{% url 'authenticate:account' %}"> My account </a>
-                <a href="{% url 'authenticate:signout' %}"> Sign out </a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'authenticate:signout' %}" style="background-color:#f8f9fa; color:#22223b;"> <b> Sign out </b> </a>
+                <a href="{% url 'authenticate:account' %}"> My {{ request.user.account.role }} account </a>
             {% else %}
+            <a href="{% url 'authenticate:signin' %}" style="background-color:#f8f9fa; color:#22223b"> <b> Sign in </b> </a>
                 <a href="{% url 'authenticate:register' %}"> Register </a>
-                <a href="{% url 'authenticate:signin' %}"> Sign in </a>
             {% endif %}
         </div>
     </div>
     <div class="hero-section-container">
         <div class="hero-section-contents">
-            <div class="hero-section-text">
-                <h1> The <mark style="border-radius:10px; padding: 0 8px; background:linear-gradient(to right, #50cecc,#9aeec7);">only</mark> health app you'll ever use. </h1>
-                <p>
-                    Health Hub is the unified medical platform where health-care professionals and patients connect, communicate, and collaborate
-                    - cohesively. Powered by advanced technology and AI, designed for accessibility, and built to simplify every step of care.
+            <div class="hero-section-text" style="margin:0;">
+                <h1> Health care that connects the dots<span style="color:#0066cc">.</span> </h1>
+                <p style="margin:0;">
+                    The unified medical platform where health care professionals and patients connect and collaborate.
                 </p>
                 <div class="CTA-button">
-                    <a href="#"> Manage your health today </a>
-                    <a href="#about" style="background-color:#4a4e69;"> Learn more </a>
+                    {% if user.is_authenticated %}
+                        {% if request.user.account.role == 'Patient' %}
+                            <a href="{% url 'patientWorkspace:patient_dashboard' %}"> My patient dashboard </a>
+                        {% elif request.user.account.role == 'Doctor' %}
+                            <a href="#"> My doctor dashboard </a>
+                        {% endif %}
+                    {% else %}
+                        <a href="#"> Try Health Hub today </a>
+                    {% endif %}
+                    <a href="#about" style="background-color:white; color:#22223b;"> See how it works > </a>
+                </div>
+                <div class="trust-badges">
+                    <p style="max-width:100%; color:#22223b;">
+                        Built with doctors. Backed by patients.
+                    </p>
+                    <div class="trust-logos">
+                        <img src="{% static 'home/images/HealthNZ.svg' %}" alt="health nz logo" style="width:200px;">
+                        <h2 style="line-height:0;"> Naylor Palmer </h2>
+                    </div>
                 </div>
             </div>
-            <img src="{% static 'home/images/heroImg.png' %}" alt="Hero Image" class="hero-image">
+            <img src="{% static 'home/images/heroImg.jpg' %}" alt="Hero Image" class="hero-image">
         </div>
-        <p style="text-align:center; max-width:80%; position:relative; top:10vh;">
-            Built in collaboration with real doctors and real patients at: <br>
-            <b style="color:#4a4e69"> North Shore Hospital & Naylor Palmer Optometery. </b>
-        </p>
     </div>
 {% endblock %}

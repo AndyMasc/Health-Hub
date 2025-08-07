@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from .models import Account
 
 
 class CreateUserForm(UserCreationForm):
@@ -11,10 +12,27 @@ class CreateUserForm(UserCreationForm):
     email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'placeholder': 'Email address'}))
     password1 = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
     password2 = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'placeholder': 'Confirm password'}))
+    role = forms.ChoiceField(
+        label='Role - This cannot be changed later.',
+        required=True,
+        choices=[('Doctor', 'Doctor'), ('Patient', 'Patient')],
+        initial='Patient',
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2', 'role']
+
+    def save(self, commit=True):
+        user = super().save(commit=commit)
+        if commit:
+            # Create the Account instance with the selected role
+            Account.objects.create(
+                user=user,
+                role=self.cleaned_data['role']
+            )
+        return user
 
 class AuthorizeUser(AuthenticationForm):
     username = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Username - case sensitive'}))

@@ -17,6 +17,9 @@
                 {% csrf_token %}
 
                 {% for field in form %}
+                    {% if field.label == 'Role - This cannot be changed later.' %}
+                <h3> <u style="font-weight:350; max-width:80%;"> {{ field.label }} </u> </h3>
+                    {% endif %}
                     {{ field }}
                     <ul>
                         {% if field.errors %}

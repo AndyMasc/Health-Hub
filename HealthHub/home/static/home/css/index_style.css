@@ -3,23 +3,24 @@ body {
 }
 
 h1 {
-    font-family: 'Atkinson Hyperlegible';
-    font-size: 61px;
+    font-family: 'Inter';
+    font-size: 64px;
+    font-weight: 750;
     color: #22223b;
     letter-spacing: -0.01em;
     line-height: 100%;
 }
 
 p {
-    font-family: 'Atkinson Hyperlegible';
-    color: #4a4e69;
-    font-size: 16px;
+    font-family: 'Inter';
+    color: #22223b;
+    font-size: 22px;
     line-height: 150%;
+    font-weight: 400;
+    max-width: 90%;
 }
 
 .navbar {
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #cccccc;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,32 +30,41 @@ p {
     top: 0;
     left: 0;
     z-index: 1000;
+    padding: 0 2%;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
 }
 
 .logo img {
-    position: absolute;
     height: 61px;
-    left: 2%;
-    top: 0;
+    position: absolute;
 }
 
 .navbar ul {
     display: flex;
-    position: fixed;
     align-items: center;
     justify-content: center;
     list-style-type: none;
     gap: 61px;
+    width: 100%;
+    flex: 1;
 }
 
 .navbar ul li a {
-    font-family: 'Atkinson Hyperlegible';
+    font-family: 'Inter';
     font-size: 16px;
     color: #22223b;
     text-decoration: none;
     padding: 8px;
     border-radius: 10px;
     transition: background-color 0.3s ease;
+    line-height: 1;
+    vertical-align: middle;
 }
 
 .navbar ul li a:hover {
@@ -62,20 +72,20 @@ p {
 }
 
 .auth-links {
-    position: absolute;
     right: 2%;
     display: flex;
     align-items: center;
     gap: 16px;
+    position: absolute;
 }
 
 .auth-links a {
-    font-family: 'Atkinson Hyperlegible';
+    font-family: 'Inter';
     font-size: 16px;
     border-radius: 10px;
-    color: #f8f9fa;
+    color: white;
     padding: 10px;
-    background-color: #4a4e69;
+    background-color: #0066cc;
     text-decoration: none;
 }
 
@@ -100,10 +110,12 @@ p {
 .hero-section-text {
     display: flex;
     flex-direction: column;
+    align-items: start;
+    width: 100%;
 }
 
 .CTA-button {
-    margin-top: 61px;
+    margin-top: 40px;
     display: flex;
     justify-content: start;
     gap: 16px;
@@ -111,18 +123,48 @@ p {
 
 .CTA-button a {
     text-decoration: none;
-    background-color: #22223b;
+    background-color: #0066cc;
     color: white;
     padding: 16px;
     border-radius: 10px;
-    font-family: 'Atkinson Hyperlegible';
+    font-family: 'Inter';
     font-size: 1.25rem;
     cursor: pointer;
     letter-spacing: 0.01em;
 }
 
 .hero-image {
+    height: 80vh;
+    border-radius: 10px;
+    z-index: 0;
+}
+
+.trust-badges {
+    display: grid;
+    grid-template-rows: auto auto;
     width: 100%;
+    border-radius: 50%;
+    position: relative;
+    top: 14vh;
+}
+
+.trust-badges p {
+    justify-self: start;
+    font-size: 17px;
+}
+
+.trust-logos {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 48px;
+}
+
+.trust-logos h1 {
+    font-size: 32px;
+    font-weight: 550;
+    color: #22223b;
+    font-family: 'Inter';
 }
 
 @media (max-width: 1200px) {

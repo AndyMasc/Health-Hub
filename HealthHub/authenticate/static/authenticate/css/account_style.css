@@ -12,7 +12,7 @@ body {
 
 h1 {
     color: #22223b;
-    font-family: "Atkinson Hyperlegible";
+    font-family: "Inter";
     text-align: center;
     font-size: 35px;
 }
@@ -38,34 +38,34 @@ h1 {
 
 .danger-zone h2 {
     color: #22223b;
-    font-family: "Atkinson Hyperlegible";
+    font-family: "Inter";
     font-size: 16px;
     font-weight: 500;
 }
 
 .danger-zone p {
     color: #ba2b32;
-    font-family: "Atkinson Hyperlegible";
+    font-family: "Inter";
     font-size: 16px;
 }
 
 .option h2 {
     color: #22223b;
-    font-family: "Atkinson Hyperlegible";
+    font-family: "Inter";
     font-size: 16px;
     font-weight: 500;
 }
 
 .option p {
     color: #4a4e69;
-    font-family: "Atkinson Hyperlegible";
+    font-family: "Inter";
     font-size: 16px;
 }
 
 .option a {
     color: white;
     font-size: 14px;
-    font-family: "Atkinson Hyperlegible";
+    font-family: "Inter";
     text-decoration: none;
 }
 
@@ -73,7 +73,7 @@ h1 {
     padding: 10px;
     width: 100%;
     box-sizing: border-box;
-    font-family: "Atkinson Hyperlegible";
+    font-family: "Inter";
     font-size: 16px;
     border-radius: 10px;
     color: #4a4e69;
@@ -98,11 +98,11 @@ h1 {
 }
 
 .save-changes:hover, .return-home-a:hover {
-    background-color: #26282d;
+    background-color: #22223b;
 }
 
 .del-option {
-    background-color: rgb(115, 6, 15, 0.5);
+    background-color: #ba2b32;
     width: 100%;
     margin: 2% auto 2% auto;
     border: solid #22223b;
@@ -111,17 +111,17 @@ h1 {
 }
 
 .del-option:hover {
-    background-color: rgb(115, 9, 13, 1);
+    background-color: #ba2b32E0;
 }
 
 .error-text {
     color: #ba2b32;
-    font-family: "Atkinson Hyperlegible";
+    font-family: "Inter";
     font-size: 16px;
 }
 
 .success {
-    font-family: "Atkinson Hyperlegible";
+    font-family: "Inter";
     font-size: 16px;
     color: #22223b;
     text-align: center;
