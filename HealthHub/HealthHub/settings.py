@@ -18,6 +18,8 @@ load_dotenv()
 
 from django.conf.global_settings import SECRET_KEY
 
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -48,7 +50,8 @@ INSTALLED_APPS = [
 
     'home',
     'authenticate',
-    'patientWorkspace',
+    'patient_workspace',
+    'symptom_diagnoser',
 ]
 
 MIDDLEWARE = [

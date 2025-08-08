@@ -1,0 +1,108 @@
+body {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.symptom-diagnoser-container {
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(100vh - 61px);
+    width: 100vw;
+}
+
+p {
+    font-size: 1.2rem;
+    font-family: 'Inter', sans-serif;
+    color: #22223b;
+}
+
+h1 {
+    font-size: 2.4rem;
+    margin-top: 61px;
+    color: #22223b;
+    font-family: 'Inter', sans-serif;
+    line-height: 0;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #4a4e69;
+    font-family: 'Inter', sans-serif;
+}
+
+.rediagnose {
+    text-decoration: none;
+    color: white;
+    border-radius: 10px;
+    padding: 10px 20px;
+    background-color: #4a4e69;
+    font-family: 'Inter', sans-serif;
+    width: 90%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.return-home {
+    position: relative;
+    top: 10px;
+    left: 10px;
+    font-size: 1.2rem;
+    color: #4a4e69;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+}
+
+form {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 16px;
+}
+
+textarea {
+    width: 40%;
+    height: 10vh;
+    padding: 10px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    resize: none;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4a4e69;
+    width: 40%;
+    color: white;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.diagnosis-results {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    box-sizing: border-box;
+    margin-bottom: 16px;
+    margin-top: 61px;
+}
+
+.diagnosis-results p {
+    font-size: 18px;
+    color: #22223b;
+    margin: 10px 0;
+}
