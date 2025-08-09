@@ -26,7 +26,7 @@
                 <p> Enter your symptoms below to get a list of possible conditions. </p>
                 <form method="POST" action="{% url 'symptom_diagnoser:symptom_diagnoser' %}">
                     {% csrf_token %}
-                    <textarea name="symptoms" placeholder="Describe your symptoms here..."></textarea>
+                    <textarea name="symptoms" placeholder="Describe your symptoms in detail..."></textarea>
                     <button type="submit" id="submitButton">Diagnose</button>
                 </form>
                 <p class="note" style="font-size:16px;"> This is not a substitute for professional medical advice. </p>
