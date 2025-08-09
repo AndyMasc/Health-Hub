@@ -3,7 +3,7 @@ body {
     overflow-y: auto;
 }
 
-.symptom-diagnoser-container, .symptom-search-container {
+.container, .symptom-search-container {
     display: flex;
     position: relative;
     align-items: center;
@@ -95,15 +95,12 @@ button {
 }
 
 .diagnosis-results {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 16px auto;
     background-color: #f2f2f2;
     padding: 20px;
     border-radius: 10px;
     width: 90%;
-    box-sizing: border-box;
-    margin-bottom: 16px;
-    margin-top: 16px;
+    box-sizing: border-box
 }
 
 .diagnosis-results p {

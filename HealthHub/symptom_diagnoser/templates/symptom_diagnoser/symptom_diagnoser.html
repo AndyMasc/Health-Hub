@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="symptom-diagnoser-container" id="symptomDiagnoserContainer">
+    <div class="container" id="symptomDiagnoserContainer">
         {% if response %}
             <div class="diagnosis-results">
                 <h2> Symptom diagnosis: </h2>
@@ -26,7 +26,7 @@
                 <p> Enter your symptoms below to get a list of possible conditions. </p>
                 <form method="POST" action="{% url 'symptom_diagnoser:symptom_diagnoser' %}">
                     {% csrf_token %}
-                    <textarea name="symptoms" placeholder="Describe your symptoms in detail..."></textarea>
+                    <textarea name="symptoms" placeholder="Describe your symptoms in detail..."  id="symptoms"></textarea>
                     <button type="submit" id="submitButton">Diagnose</button>
                 </form>
                 <p class="note" style="font-size:16px;"> This is not a substitute for professional medical advice. </p>
@@ -48,7 +48,6 @@
                     this.style.cursor = 'not-allowed';
                     this.textContent = 'Diagnosing...';
                     this.style.backgroundColor = '#8d92af';
-                    this.submit();
                 });
             }
         });

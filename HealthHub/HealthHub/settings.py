@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'authenticate',
     'patient_workspace',
     'symptom_diagnoser',
+    'reminders',
 ]
 
 MIDDLEWARE = [

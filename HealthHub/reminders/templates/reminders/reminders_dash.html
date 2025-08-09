@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'reminders/css/reminders_dash_style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h1> Manage your reminders. </h1>
+    <h3> These reminders can also be managed by your doctor. </h3>
+    {% if reminders %}
+        {% for reminder in reminders %}
+            {{ reminder.title }}
+            {{ reminder.content }}
+            {{ reminder.date }}
+        {% endfor %}
+    {% else %}
+        <h2>You have not created any reminders.</h2>
+    {% endif %}
+    <a href="{% url 'reminders:add_reminder' %}"> + Add a reminder </a>
+{% endblock %}

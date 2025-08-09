@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    {% load static %}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>
+            <span style="color:white">
+                Create a reminder
+            </span>
+        </h1>
+        <div class="form">
+            <form method="POST" action="" autocomplete="off">
+                {% csrf_token %}
+                    <input type="text" id="title" name="title" placeholder="Reminder title" class="title" maxlength="100" required>
+                    <textarea id="content" name="content" placeholder="Content..." class="content" maxlength="5000" required></textarea>
+                {% block submit %}
+                    <input type="submit" value="Create">
+                {% endblock %}
+            </form>
+        </div>
+    </div>
+{% endblock %}
