@@ -3,7 +3,7 @@ body {
     overflow-y: auto;
 }
 
-.symptom-diagnoser-container {
+.symptom-diagnoser-container, .symptom-search-container {
     display: flex;
     position: relative;
     align-items: center;
@@ -43,10 +43,11 @@ h2 {
     width: 90%;
     box-sizing: border-box;
     text-align: center;
+    transition: all 0.3s ease;
 }
 
 .return-home {
-    position: relative;
+    position: absolute;
     top: 10px;
     left: 10px;
     font-size: 1.2rem;
@@ -89,6 +90,10 @@ button {
     transition: background-color 0.3s ease;
 }
 
+.rediagnose:hover, button:hover {
+    background-color: #22223b;
+}
+
 .diagnosis-results {
     margin-left: auto;
     margin-right: auto;
@@ -98,11 +103,29 @@ button {
     width: 90%;
     box-sizing: border-box;
     margin-bottom: 16px;
-    margin-top: 61px;
+    margin-top: 16px;
 }
 
 .diagnosis-results p {
     font-size: 18px;
     color: #22223b;
     margin: 10px 0;
+}
+
+.loader {
+  border: 8px solid #cccccc;
+  border-top: 8px solid #0066cc; /* Blue */
+  border-radius: 50%;
+  width: 61px;
+  height: 61px;
+  animation: spin 1s linear infinite;
+  animation-timing-function: ease;
+  display: inline-block;
+  vertical-align: middle; /* Align with text */
+  margin-left: 8px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

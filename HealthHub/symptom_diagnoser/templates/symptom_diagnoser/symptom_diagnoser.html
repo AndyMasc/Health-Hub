@@ -6,13 +6,7 @@
 {% endblock %}
 
 {% block content %}
-    <a href="{% url 'patient_workspace:patient_dashboard' %}" class="return-home">
-        <svg style="width:30px; transform:translateY(6px); margin-right:10px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
-        </svg>
-        Return home
-    </a>
-    <div class="symptom-diagnoser-container">
+    <div class="symptom-diagnoser-container" id="symptomDiagnoserContainer">
         {% if response %}
             <div class="diagnosis-results">
                 <h2> Symptom diagnosis: </h2>
@@ -21,13 +15,42 @@
             </div>
             <a href="{% url 'symptom_diagnoser:symptom_diagnoser' %}" class="rediagnose">Diagnose again</a>
         {% else %}
-            <h1> Feeling under the weather? </h1>
-            <p> Enter your symptoms below to get a list of possible conditions. </p>
-            <form method="POST" action="{% url 'symptom_diagnoser:symptom_diagnoser' %}">
-                {% csrf_token %}
-                <textarea name="symptoms" placeholder="Describe your symptoms here..."></textarea>
-                <button type="submit">Diagnose</button>
-            </form>
+            <div class="symptom-search-container" id="symptomSearchContainer">
+                <a href="{% url 'patient_workspace:patient_dashboard' %}" class="return-home">
+                    <svg style="width:30px; transform:translateY(6px); margin-right:10px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+                    </svg>
+                    Return home
+                </a>
+                <h1> Feeling under the weather? </h1>
+                <p> Enter your symptoms below to get a list of possible conditions. </p>
+                <form method="POST" action="{% url 'symptom_diagnoser:symptom_diagnoser' %}">
+                    {% csrf_token %}
+                    <textarea name="symptoms" placeholder="Describe your symptoms here..."></textarea>
+                    <button type="submit" id="submitButton">Diagnose</button>
+                </form>
+                <p class="note" style="font-size:16px;"> This is not a substitute for professional medical advice. </p>
+            </div>
+            <span class="loader" id="loader" style="display:none;"></span>
         {% endif %}
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const submitButton = document.getElementById('submitButton');
+            const loader = document.getElementById('loader');
+            const symptomSearchContainer = document.getElementById('symptomSearchContainer');
+            if (submitButton) {
+                submitButton.addEventListener('click', function() {
+                    loader.style.display = 'block';
+                    loader.style.position = 'absolute';
+                    symptomSearchContainer.style.opacity = '0.5';
+                    this.style.cursor = 'not-allowed';
+                    this.textContent = 'Diagnosing...';
+                    this.style.backgroundColor = '#8d92af';
+                    this.submit();
+                });
+            }
+        });
+    </script>
 {% endblock %}
