@@ -16,6 +16,7 @@
                 {% csrf_token %}
                     <input type="text" id="title" name="title" placeholder="Reminder title" class="title" maxlength="100" required>
                     <textarea id="content" name="content" placeholder="Content..." class="content" maxlength="5000" required></textarea>
+                    <input type="date" id="due_date" name="due_date" placeholder="Due date" class="due_date">
                 {% block submit %}
                     <input type="submit" value="Create">
                 {% endblock %}

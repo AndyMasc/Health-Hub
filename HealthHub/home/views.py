@@ -7,7 +7,7 @@ from authenticate.models import Account
 def index(request):
     if request.user.is_authenticated:
         if request.user.account.role == 'Patient':
-            return redirect('patient_workspace:patient_dashboard')
+            return redirect('patient_workspace:dashboard')
         elif request.user.account.role == 'Doctor':
-            return redirect('patient_workspace:patient_dashboard')
+            return redirect('patient_workspace:dashboard')
     return render(request, 'home/index.html')

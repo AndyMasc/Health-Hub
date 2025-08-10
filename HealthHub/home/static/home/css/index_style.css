@@ -127,7 +127,7 @@ p {
     color: white;
     padding: 16px;
     border-radius: 10px;
-    font-family: 'Inter';
+    font-family: 'Inter', sans-serif;
     font-size: 1.25rem;
     cursor: pointer;
     letter-spacing: 0.01em;

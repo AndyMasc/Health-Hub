@@ -35,7 +35,7 @@
                 <div class="CTA-button">
                     {% if user.is_authenticated %}
                         {% if request.user.account.role == 'Patient' %}
-                            <a href="{% url 'patientWorkspace:patient_dashboard' %}"> My patient dashboard </a>
+                            <a href="{% url 'patientWorkspace:dashboard' %}"> My patient dashboard </a>
                         {% elif request.user.account.role == 'Doctor' %}
                             <a href="#"> My doctor dashboard </a>
                         {% endif %}

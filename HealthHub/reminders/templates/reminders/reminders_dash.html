@@ -6,16 +6,80 @@
 {% endblock %}
 
 {% block content %}
-    <h1> Manage your reminders. </h1>
-    <h3> These reminders can also be managed by your doctor. </h3>
-    {% if reminders %}
-        {% for reminder in reminders %}
-            {{ reminder.title }}
-            {{ reminder.content }}
-            {{ reminder.date }}
-        {% endfor %}
-    {% else %}
-        <h2>You have not created any reminders.</h2>
-    {% endif %}
-    <a href="{% url 'reminders:add_reminder' %}"> + Add a reminder </a>
+    <div class="heading">
+        <div style="align-self:center;">
+            <h1> {{ request.user.username }}'s reminders. </h1>
+            <h3> Reminders can be managed by your doctor and are ordered by due date. </h3>
+        </div>
+        <div class="page-links">
+            {% if request.user.account.role == 'Patient' %}
+                <a href="{% url 'patient_workspace:dashboard' %}" class="return-home">
+                    <svg style="width:25px; transform:translateY(6px); margin-right:10px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+                    </svg>
+                    Return home
+                </a>
+            {% elif request.user.account.role == 'Doctor' %}
+                <a href="{% url 'doctor_workspace:dashboard' %}" class="return-home">
+                    <svg style="width:25px; transform:translateY(6px); margin-right:10px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+                    </svg>
+                    Return home
+                </a>
+            {% endif %}
+            <a href="{% url 'reminders:add_reminder' %}" class="add-reminder"> + Add a reminder </a>
+        </div>
+    </div>
+    <div class="widget-container">
+        {% if reminders %}
+            {% for reminder in reminders %}
+                <div class="reminder-widget">
+                    <div style="place-self:center;">
+                        <a href="{% url 'reminders:complete_reminder' reminder.id %}" style="text-decoration:none;">
+                            <svg style="width:80px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0 1 18 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3 1.5 1.5 3-3.75" />
+                            </svg>
+                            <p style="text-align:center; font-size:13px; text-decoration:none; color:black;"> Complete </p>
+                        </a>
+                    </div>
+                    <div class="widget-content">
+                        <form action="{% url 'reminders:update_reminder' reminder.id %}" method="POST" id="update-form">
+                            {% csrf_token %}
+                            <textarea placeholder="Reminder title" required maxlength="100" name="title" class="reminder-title" style="margin:0;">{{ reminder.title }}</textarea>
+                            <p style="margin-top:8px;"> <span class="created-by"> <b> Created by {{ reminder.user }} ({{ reminder.user.account.role }}) on {{ reminder.date_added }} </b> </span> </p>
+                            <p style="margin-top:0; margin-bottom:16px;"> Due on: <input type="date" id="due_date" name="due_date" placeholder="Due date" class="due_date" value="{{ reminder.due_date|date:'Y-m-d' }}"> </p>
+                            <textarea style="margin-top:8px; margin-bottom:16px;" placeholder="Reminder content" required maxlength="3000" name="content">{{ reminder.content }}</textarea>
+                        </form>
+                        <button class="update" id="update">Update</button>
+                        <dialog id="update-success">
+                            <h2> The reminder was updated successfully. </h2>
+                            <button id="closeDialog" class="closeDialog">Close</button>
+                        </dialog>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="reminder-widget">
+                <h1 style="position:absolute; font-weight:500; font-size:1.6rem; place-self:center;"> You have no reminders. </h1>
+            </div>
+        {% endif %}
+    </div>
+    <script>
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('update')) {
+                const widget = e.target.closest('.reminder-widget');
+                const dialog = widget.querySelector('dialog');
+                dialog.showModal();
+            }
+
+            if (e.target.classList.contains('closeDialog')) {
+                const widget = e.target.closest('.reminder-widget');
+                const form = widget.querySelector('form');
+                const dialog = widget.querySelector('dialog');
+
+                form.submit();
+                dialog.close();
+            }
+        });
+    </script>
 {% endblock %}
