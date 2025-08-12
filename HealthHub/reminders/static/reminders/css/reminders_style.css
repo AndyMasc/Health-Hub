@@ -1,17 +1,50 @@
 .heading {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
-    margin: 1rem;
-    font-family: Inter, sans-serif;
+    margin: 1rem 1rem 30.5px 1rem;
+    font-family: "Inter", sans-serif;
 }
 .heading h1 {
     font-size: 2.8rem;
-    margin-bottom: 0;
     font-weight: 600;
-    font-family: Inter, sans-serif;
+    font-family: "Inter", sans-serif;
 }
-.heading h3 {
-    font-weight: 450;
+h3 {
+    font-weight: 300;
+}
+
+.info-button {
+    background-color: transparent;
+    padding: 0;
+    border: none;
+}
+
+.reminder-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    gap: 1rem;
+    box-sizing: border-box;
+}
+.completed-stats {
+    display: flex;
+    line-height: 0;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Inter", sans-serif;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 10px;
+    width: 30%;
+    height: 100px;
+    background-color: white;
+    box-shadow: 0px 0px 20px 1px #cccccc;
+}
+.completed-stats h3 {
+    font-weight: 400;
+    color: grey;
 }
 
 .page-links {
@@ -41,34 +74,30 @@
 
 .widget-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(500px, 100%), 1fr));
+    grid-template-columns: 1fr;
     gap: 2rem;
     padding: 1rem;
 }
 
 .reminder-widget {
     display: grid;
-    height: 160px;
-    grid-template-columns: 100px 1fr;
+    box-shadow: 0px 0px 20px 1px #cccccc;
+    border-left: 6px solid black;
+    height: 175px;
+    grid-template-columns: 1fr;
     grid-column-gap: 1rem;
     border-radius: 10px;
     padding: 1rem;
-    font-family: 'Inter', sans-serif;
-    border: solid #cccccc;
-    box-shadow: 0px 5px 15px 1px #cccccc;
+    font-family: "Inter", sans-serif;
 }
 
 .widget-content {
     display: flex;
     flex-direction: column;
     justify-content: start;
-    align-items: start;
+    align-items: center;
     overflow: auto;
-    border-left: solid black;
     padding: 0 1rem;
-}
-.widget-content p {
-    font-weight: 400;
 }
 
 form {
@@ -76,18 +105,18 @@ form {
     flex-direction: column;
     justify-content: center;
     align-items: start;
-    width: 70%;
+    width: 100%;
 }
 .reminder-title, textarea {
     box-sizing: border-box;
     border: none;
     background-color: transparent;
-    font-family: Inter, sans-serif;
+    font-family: "Inter", sans-serif;
     padding: 0;
     field-sizing: content;
     resize: none;
     min-height: 1em;
-    width: 100%;
+    max-width: 80%;
 }
 .reminder-title {
     font-size: 1.6rem;
@@ -97,9 +126,8 @@ textarea {
     font-size: 1rem;
     font-weight: 300;
 }
-.update, .closeDialog {
+.closeDialog, .complete {
     position: relative;
-    background-color: #0066cc;
     border-radius: 10px;
     padding: 0.5rem 1rem;
     color: white;
@@ -108,38 +136,41 @@ textarea {
     border: none;
     cursor: pointer;
     transition: 0.1s linear;
+    background-color: #0066cc;
 }
 .update {
-    position: absolute;
-    align-self: end;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
-.update:hover {
-    background-color: #0256a9;
-    color: white;
-}
+
 input[type='date'] {
     background-color: transparent;
     border: none;
-    font-family: Inter, sans-serif;
+    font-family: "Inter", sans-serif;
+    color: grey;
 }
-
-.created-by {
-    font-size: 16px;
-    color: #22223b;
-}
-
-svg {
-    color: black;
-}
-svg:hover {
-    fill: #b9f3b9;
-    color: green;
+.complete {
+    background-color: mediumseagreen;
+    text-decoration: none;
 }
 
 dialog {
     border-radius: 10px;
-    font-family: Inter, sans-serif;
+    font-family: "Inter", sans-serif;
     text-align: center;
+    border: none;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 25%;
+    opacity: 0.9;
+}
+.dialog h2 {
+    font-weight: 400;
+}
+.dialog h3 {
+    max-width: 80%;
 }
 
 @media (max-width: 900px) {

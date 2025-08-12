@@ -38,7 +38,6 @@ def register(request):
             form.save()
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password1'])
             login(request, user)
-            return redirect('home:index')
     else:
         form = CreateUserForm()
         context = {'form':form}

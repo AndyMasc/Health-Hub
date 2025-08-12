@@ -12,7 +12,7 @@ body {
 
 h1 {
     color: #22223b;
-    font-family: "Inter";
+    font-family: "Inter", sans-serif;
     text-align: center;
     font-size: 35px;
 }
@@ -38,34 +38,34 @@ h1 {
 
 .danger-zone h2 {
     color: #22223b;
-    font-family: "Inter";
+    font-family: "Inter", sans-serif;
     font-size: 16px;
     font-weight: 500;
 }
 
 .danger-zone p {
     color: #ba2b32;
-    font-family: "Inter";
+    font-family: "Inter", sans-serif;
     font-size: 16px;
 }
 
 .option h2 {
     color: #22223b;
-    font-family: "Inter";
+    font-family: "Inter", sans-serif;
     font-size: 16px;
     font-weight: 500;
 }
 
 .option p {
     color: #4a4e69;
-    font-family: "Inter";
+    font-family: "Inter", sans-serif;
     font-size: 16px;
 }
 
 .option a {
     color: white;
     font-size: 14px;
-    font-family: "Inter";
+    font-family: "Inter", sans-serif;
     text-decoration: none;
 }
 
@@ -73,7 +73,7 @@ h1 {
     padding: 10px;
     width: 100%;
     box-sizing: border-box;
-    font-family: "Inter";
+    font-family: "Inter", sans-serif;
     font-size: 16px;
     border-radius: 10px;
     color: #4a4e69;
@@ -116,12 +116,12 @@ h1 {
 
 .error-text {
     color: #ba2b32;
-    font-family: "Inter";
+    font-family: "Inter", sans-serif;
     font-size: 16px;
 }
 
 .success {
-    font-family: "Inter";
+    font-family: "Inter", sans-serif;
     font-size: 16px;
     color: #22223b;
     text-align: center;
