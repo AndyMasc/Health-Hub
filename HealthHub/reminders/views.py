@@ -13,7 +13,8 @@ def reminders_dash(request):
     return render(request, 'reminders/reminders.html', {
         'reminders': Reminder.objects.filter(user=request.user, is_completed=False).order_by('due_date'),
         'completed_reminders': Reminder.objects.filter(user=request.user, is_completed=True).order_by('due_date').count(),
-        'overdue_reminders': overdue_reminders.count()
+        'overdue_reminders': overdue_reminders,
+        'reminders_due_today': Reminder.objects.filter(due_date=timezone.now().date())
     })
 
 def add_reminder(request):
