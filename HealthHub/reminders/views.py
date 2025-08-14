@@ -5,16 +5,19 @@ from django.utils import timezone
 # Create your views here.
 
 def reminders_dash(request):
+    now = timezone.now()
+    today_start = now.replace(hour=0, minute=0, second=0, microsecond=0)
+    tomorrow_start = today_start + timezone.timedelta(days=1)
+
     overdue_reminders = Reminder.objects.filter(
         user=request.user,
         is_completed=False,
-        due_date__lt=timezone.now().date()
+        due_date__lt=today_start
     )
     return render(request, 'reminders/reminders.html', {
         'reminders': Reminder.objects.filter(user=request.user, is_completed=False).order_by('due_date'),
         'completed_reminders': Reminder.objects.filter(user=request.user, is_completed=True).order_by('due_date').count(),
         'overdue_reminders': overdue_reminders,
-        'reminders_due_today': Reminder.objects.filter(due_date=timezone.now().date())
     })
 
 def add_reminder(request):

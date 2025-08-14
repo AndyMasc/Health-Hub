@@ -97,6 +97,7 @@ h3 {
     align-items: center;
     overflow: auto;
     padding: 0 1rem;
+    box-sizing: border-box;
 }
 
 form {
@@ -112,31 +113,36 @@ form {
     background-color: transparent;
     font-family: "Inter", sans-serif;
     padding: 0;
-    field-sizing: content;
     resize: none;
-    min-height: 1em;
-    max-width: 80%;
+    field-sizing: content;
+    width: 70%;
 }
 .reminder-title {
     font-size: 1.6rem;
     font-weight: 600;
+    width: 60%;
 }
-textarea {
-    font-size: 1rem;
-    font-weight: 400;
-}
-.closeDialog, .complete {
+
+.closeDialog, .complete, .status {
     position: relative;
     border-radius: 10px;
     padding: 0.5rem 1rem;
     color: white;
     font-size: 16px;
-    margin: 8px 0 0 0;
     border: none;
-    cursor: pointer;
     transition: 0.1s linear;
     background-color: #0066cc;
 }
+.closeDialog {
+    cursor: pointer;
+}
+.complete {
+    background-color: mediumseagreen;
+    text-decoration: none;
+    margin: 0;
+    cursor: pointer;
+}
+
 .update {
     background-color: transparent;
     border: none;
@@ -147,11 +153,18 @@ input[type='date'] {
     background-color: transparent;
     border: none;
     font-family: "Inter", sans-serif;
-    color: grey;
+    color: #0066cc;
 }
-.complete {
-    background-color: mediumseagreen;
-    text-decoration: none;
+
+.complete-links {
+    position: absolute;
+    align-self: end;
+    margin-top: 116px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 1rem;
 }
 
 dialog {
@@ -172,6 +185,16 @@ dialog {
     max-width: 80%;
 }
 
+.reminder-actions {
+    display:flex;
+    position:absolute;
+    align-self:end;
+    justify-self:start;
+    gap:2rem;
+    justify-content:center;
+    align-items:center;
+}
+
 @media (max-width: 900px) {
     .heading {
         text-align: center;
@@ -179,6 +202,20 @@ dialog {
     .page-links {
         align-self: center;
         justify-self: center;
+    }
+    .complete-links {
+        position: relative;
+        align-self: start;
+        justify-self: center;
+        margin-top: 10px;
+    }
+    .reminder-actions {
+        position: relative;
+        align-self: start;
+        margin-bottom: 1rem;
+    }
+    .reminder-title, textarea {
+        width: 100%;
     }
 }
 
