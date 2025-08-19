@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Enrolled patients</h1>
+    {% if patients %}
+        {% for patient in patients %}
+            {{ patient.user.username }}
+        {% endfor %}
+    {% else %}
+        <p>No patients yet.</p>
+    {% endif %}
+{% endblock %}

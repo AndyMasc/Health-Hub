@@ -1,60 +1,61 @@
 {% extends 'base.html' %}
 
 {% block head %}
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'home/css/index_style.css' %}">
+{% load static %}
+<link rel="stylesheet" href="{% static 'home/css/index_style.css' %}">
 {% endblock %}
 
 {% block content %}
-    <div class="navbar">
-        <div class="logo">
-            <img src="{% static 'home/images/logo.png' %}" alt="Health Hub Logo">
-        </div>
-        <ul>
-            <li> <a href="#about"> About </a> </li>
-            <li> <a href="#features"> Features </a> </li>
-            <li> <a href="#contact"> Contact </a> </li>
-        </ul>
-        <div class="auth-links">
-            {% if user.is_authenticated %}
-                <a href="{% url 'authenticate:signout' %}" style="background-color:#f8f9fa; color:#22223b;"> <b> Sign out </b> </a>
-                <a href="{% url 'authenticate:account' %}"> My {{ request.user.account.role }} account </a>
-            {% else %}
-            <a href="{% url 'authenticate:signin' %}" style="background-color:#f8f9fa; color:#22223b"> <b> Sign in </b> </a>
-                <a href="{% url 'authenticate:register' %}"> Register </a>
-            {% endif %}
-        </div>
+<div class="navbar">
+    <div class="logo">
+        <img src="{% static 'home/images/logo.png' %}" alt="Health Hub Logo">
     </div>
-    <div class="hero-section-container">
-        <div class="hero-section-contents">
-            <div class="hero-section-text" style="margin:0;">
-                <h1> Health care that connects the dots<span style="color:#0066cc">.</span> </h1>
-                <p style="margin:0;">
-                    The unified medical platform where health care professionals and patients connect and collaborate.
+    <ul>
+        <li><a href="#about"> About </a></li>
+        <li><a href="#features"> Features </a></li>
+        <li><a href="#contact"> Contact </a></li>
+    </ul>
+    <div class="auth-links">
+        {% if user.is_authenticated %}
+        <a href="{% url 'authenticate:signout' %}" style="background-color:#f8f9fa; color:#22223b;"> <b> Sign out </b>
+        </a>
+        <a href="{% url 'authenticate:account' %}"> My {{ request.user.account.role }} account </a>
+        {% else %}
+        <a href="{% url 'authenticate:signin' %}" style="background:transparent; color:#22223b"> <b> Sign in </b> </a>
+        <a href="{% url 'authenticate:register' %}"> Register </a>
+        {% endif %}
+    </div>
+</div>
+<div class="hero-section-container">
+    <div class="hero-section-contents">
+        <div class="hero-section-text" style="margin:0;">
+            <h1> Health care that connects the dots<span style="color:#0066cc">.</span></h1>
+            <p style="margin:0;">
+                The unified medical platform where health care professionals and patients connect and collaborate.
+            </p>
+            <div class="CTA-button">
+                {% if user.is_authenticated %}
+                {% if request.user.account.role == 'Patient' %}
+                <a href="{% url 'patientWorkspace:dashboard' %}"> My patient dashboard </a>
+                {% elif request.user.account.role == 'Doctor' %}
+                <a href="#"> My doctor dashboard </a>
+                {% endif %}
+                {% else %}
+                <a href="#"> Try Health Hub today </a>
+                {% endif %}
+                <a href="#about" style="background-color:white; color:#22223b;"> See how it works > </a>
+            </div>
+            <div class="trust-badges">
+                <p style="max-width:100%; color:#22223b;">
+                    Built with doctors. Backed by patients.
                 </p>
-                <div class="CTA-button">
-                    {% if user.is_authenticated %}
-                        {% if request.user.account.role == 'Patient' %}
-                            <a href="{% url 'patientWorkspace:dashboard' %}"> My patient dashboard </a>
-                        {% elif request.user.account.role == 'Doctor' %}
-                            <a href="#"> My doctor dashboard </a>
-                        {% endif %}
-                    {% else %}
-                        <a href="#"> Try Health Hub today </a>
-                    {% endif %}
-                    <a href="#about" style="background-color:white; color:#22223b;"> See how it works > </a>
-                </div>
-                <div class="trust-badges">
-                    <p style="max-width:100%; color:#22223b;">
-                        Built with doctors. Backed by patients.
-                    </p>
-                    <div class="trust-logos">
-                        <img src="{% static 'home/images/HealthNZ.svg' %}" alt="health nz logo" style="width:200px;">
-                        <h2 style="line-height:0;"> Naylor Palmer </h2>
-                    </div>
+                <div class="trust-logos">
+                    <img src="{% static 'home/images/HealthNZ.svg' %}" alt="health nz logo" style="width:200px;">
+                    <h2 style="line-height:0;"> Naylor Palmer </h2>
                 </div>
             </div>
-            <img src="{% static 'home/images/heroImg.jpg' %}" alt="Hero Image" class="hero-image">
         </div>
+        <img src="{% static 'home/images/heroImg.jpg' %}" alt="Hero Image" class="hero-image">
     </div>
+</div>
 {% endblock %}

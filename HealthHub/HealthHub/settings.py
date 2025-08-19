@@ -50,7 +50,7 @@ INSTALLED_APPS = [
 
     'home',
     'authenticate',
-    'patient_workspace',
+    'workspace',
     'symptom_diagnoser',
     'reminders',
 ]

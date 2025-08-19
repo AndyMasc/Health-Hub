@@ -1,5 +1,3 @@
-# for customizing signin and registration forms
-
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django import forms
 from django.contrib.auth.models import User
@@ -8,7 +6,9 @@ from .models import Account
 
 
 class CreateUserForm(UserCreationForm):
-    username = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Username - required for sign in'}), max_length=30)
+    username = forms.CharField(required=True,
+                               widget=forms.TextInput(attrs={'placeholder': 'Username - required for sign in'}),
+                               max_length=30)
     email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'placeholder': 'Email address'}))
     password1 = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
     password2 = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'placeholder': 'Confirm password'}))
@@ -34,9 +34,12 @@ class CreateUserForm(UserCreationForm):
             )
         return user
 
+
 class AuthorizeUser(AuthenticationForm):
-    username = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Username - case sensitive'}))
+    username = forms.CharField(required=True,
+                               widget=forms.TextInput(attrs={'placeholder': 'Username - case sensitive'}))
     password = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+
 
 class UpdateUser(forms.ModelForm):
     username = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Username'}), max_length=30)
@@ -57,3 +60,17 @@ class UpdateUser(forms.ModelForm):
         if User.objects.filter(email=email).exclude(pk=self.instance.pk).exists():
             raise ValidationError("A user with this email already exists.")
         return email
+
+
+class AddPatientForm(forms.Form):
+    patient_user = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Username'}),
+                                   max_length=30)
+    patient_password = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+
+    def clean_patient_user(self):
+        patient_user = self.cleaned_data['patient_user']
+        return patient_user
+
+    def clean_patient_password(self):
+        patient_password = self.cleaned_data['patient_password']
+        return patient_password

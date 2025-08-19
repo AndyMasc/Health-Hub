@@ -3,7 +3,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
-from .forms import CreateUserForm, AuthorizeUser, UpdateUser
+from .forms import CreateUserForm, AuthorizeUser, UpdateUser, AddPatientForm
+from .models import Patient, Account
 
 
 # Create your views here.
@@ -11,8 +12,9 @@ from .forms import CreateUserForm, AuthorizeUser, UpdateUser
 @login_required
 def account(request):
     form = UpdateUser(instance=request.user)
-    context = {'form':form}
+    context = {'form': form}
     return render(request, 'authenticate/account.html', context)
+
 
 def update_user(request):
     if request.method == 'POST':
@@ -28,23 +30,25 @@ def update_user(request):
                     messages.error(request, f"{error}")
     else:
         form = UpdateUser(instance=request.user)
-    return render(request, 'authenticate/account.html', {'form':form})
+    return render(request, 'authenticate/account.html', {'form': form})
+
 
 def register(request):
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
-        context = {'form':form}
+        context = {'form': form}
         if form.is_valid():
             form.save()
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password1'])
             login(request, user)
     else:
         form = CreateUserForm()
-        context = {'form':form}
+        context = {'form': form}
     return render(request, 'authenticate/register.html', context)
 
+
 def signin(request):
-    form = AuthorizeUser(request)
+    form = AuthorizeUser()
     context = {'form': form}
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -57,10 +61,12 @@ def signin(request):
             messages.error(request, 'Invalid credentials. Please try again.')
     return render(request, 'authenticate/signin.html', context)
 
+
 @login_required()
 def signout(request):
     logout(request)
     return redirect('home:index')
+
 
 @login_required()
 def delete_account(request):
@@ -68,3 +74,24 @@ def delete_account(request):
     user.delete()
     messages.success(request, 'Your account has been deleted successfully.')
     return redirect('authenticate:signin')
+
+
+@login_required()
+def add_patient(request):
+    form = AddPatientForm()
+    context = {'form': form}
+    if request.method == 'POST':
+        patient_user = request.POST.get('patient_user')
+        patient_password = request.POST.get('patient_password')
+        patient_obj = authenticate(username=patient_user, password=patient_password)
+
+        if patient_obj is not None:
+            patient = Account.objects.get(user=patient_obj)
+            doctor = Account.objects.get(user=request.user)
+            patient.doctor = doctor
+            patient.save()
+            return redirect('workspace:dashboard')
+        else:
+            messages.error(request, 'Invalid credentials. Please try again.')
+
+    return render(request, 'authenticate/add_patient.html', {'form': form})

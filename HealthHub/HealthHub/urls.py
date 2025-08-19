@@ -24,7 +24,7 @@ urlpatterns = [
 
     path('', include('home.urls')),
     path('authenticate/', include('authenticate.urls')),
-    path('patient/', include('patient_workspace.urls')),
+    path('workspace/', include('workspace.urls')),
     path('symptom_diagnoser/', include('symptom_diagnoser.urls')),
     path('reminders/', include('reminders.urls')),
 ]
