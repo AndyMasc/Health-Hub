@@ -1,14 +1,15 @@
 {% extends 'authenticate/register.html' %}
 
 {% block title %}
-Enroll a Patient
+Enroll a patient <br>
+<p style="font-size:15px; margin-bottom:0;"> Requires an existing patient account. </p>
 {% endblock %}
 
 {% block submit %}
-<input type="submit" value="Enroll patient">
-{% if messages %}
-{% for message in messages %}
-<div class="invalidLogin"><p> {{ message }} </p></div>
-{% endfor %}
-{% endif %}
+    <input type="submit" value="Enroll patient">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="invalidLogin"><p> {{ message }} </p></div>
+        {% endfor %}
+    {% endif %}
 {% endblock %}

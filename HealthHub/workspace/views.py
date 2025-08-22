@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.http import Http404
 from django.shortcuts import render
-from authenticate.models import Account, Patient
+from authenticate.models import Account, Patient, Doctor
 
 # Create your views here.
 
@@ -12,10 +13,10 @@ def dashboard(request):
 @login_required
 def patients_view(request):
     if request.user.account.role == 'Doctor':
-        doctor_account = Account.objects.get(user=request.user)
+        doctor_account = Doctor.objects.get(user=request.user)
         patients = doctor_account.patients.all()
 
         context = {'patients':patients}
         return render(request, 'workspace/patients.html', context)
     else:
-        raise Http404("Item does not exist")
+        raise Http404("You're not allowed here.")

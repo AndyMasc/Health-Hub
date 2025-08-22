@@ -25,9 +25,9 @@
                 {% if request.user.account.role == 'Patient' %}
                     <h1> Feeling under the weather? </h1>
                 {% else %}
-                    <h1> Solidify your diagnosis. </h1>
+                    <h1> Diagnosis assistance. </h1>
                 {% endif %}
-                <p> Enter your patients symptoms below to get a list of possible conditions and tests. </p>
+                <p> Enter your patients symptoms to recieve potential conditions and tests. </p>
                 <form method="POST" action="{% url 'symptom_diagnoser:symptom_diagnoser' %}">
                     {% csrf_token %}
                     <textarea name="symptoms" placeholder="Describe your symptoms in detail..."  id="symptoms"></textarea>

@@ -63,9 +63,9 @@ class UpdateUser(forms.ModelForm):
 
 
 class AddPatientForm(forms.Form):
-    patient_user = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Username'}),
+    patient_user = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Patient username'}),
                                    max_length=30)
-    patient_password = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+    patient_password = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'placeholder': 'Patient password'}))
 
     def clean_patient_user(self):
         patient_user = self.cleaned_data['patient_user']

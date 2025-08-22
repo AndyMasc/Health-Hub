@@ -2,6 +2,7 @@
 
 {% block content %}
     <h1>Enrolled patients</h1>
+    <a href="{% url 'authenticate:add_patient' %}">Enroll patient</a>
     {% if patients %}
         {% for patient in patients %}
             {{ patient.user.username }}

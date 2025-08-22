@@ -14,9 +14,34 @@
         <div class="form">
             <form method="POST" action="" autocomplete="off">
                 {% csrf_token %}
-                    <input type="text" id="title" name="title" placeholder="Reminder title" class="title" maxlength="70" required>
-                    <textarea id="content" name="content" placeholder="Content..." class="content" maxlength="5000" required></textarea>
-                    <input type="date" id="due_date" name="due_date" placeholder="Due date" class="due_date">
+                <input type="text" id="title" name="title" placeholder="Reminder title" class="title" maxlength="70" required>
+                <textarea id="content" name="content" placeholder="Content..." class="content" maxlength="5000" required></textarea>
+                <input type="date" id="due_date" name="due_date" placeholder="Due date" class="due_date">
+
+                {% if request.user.account.role == 'Doctor' %}
+                    <fieldset>
+                        <legend>Send to Patient: <br> Both you and the patient will be able to edit the reminder, and see its current status. </legend>
+                        {% for patient in patients %}
+                            <div class="radio-group">
+                                <input type="radio" name="share_recipient" value="{{ patient.user.username }}" id="{{ patient.user.username }}">
+                                <label for="{{ patient.user.username }}">{{ patient.user.username }}</label>
+                            </div>
+                        {% empty %}
+                            <p>No patients available. <a href="{% url 'authenticate:add_patient' %}">Add a patient first</a>.</p>
+                        {% endfor %}
+                    </fieldset>
+                {% elif request.user.account.role == 'Patient' %}
+                    {% if doctor %}
+                        <fieldset>
+                            <legend>Send to Doctor: <br> Both you and the doctor will be able to edit the reminder, and see its current status. </legend>
+                                <div class="radio-group">
+                                    <input type="radio" name="share_recipient" value="{{ doctor.user.username }}" id="{{ doctor.user.username }}">
+                                    <label for="{{ doctor.user.username }}">{{ doctor.user.username }}</label>
+                                </div>
+                        </fieldset>
+                    {% endif %}
+                {% endif %}
+
                 {% block submit %}
                     <input type="submit" value="Create">
                 {% endblock %}

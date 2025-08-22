@@ -17,9 +17,9 @@
             </h1>
             <dialog id="info-dialog">
                     <h2> Reminders </h2>
-                    <h3> - Reminders can be managed by your doctor. </h3>
+                    <h3> - Reminders can be managed by doctor and patients. Changes from either party are global. </h3>
                     <h3> - Reminders are ordered by priority. </h3>
-                    <h3> - Edit a reminder by selecting the text, editing as desired, and clicking update. </h3>
+                    <h3> - Edit a reminder by selecting the text, editing as desired, and clicking refresh. </h3>
                 <button id="closeInfo" class="closeDialog"> Continue </button>
             </dialog>
         </div>
@@ -36,24 +36,24 @@
     </div>
 
     <div class="reminder-stats">
-        <div class="completed-stats">
+        <div class="completed-stats" style="background-color:#e9f9e9;">
             <h1> {{ completed_reminders }} </h1>
             <h3> Completed </h3>
         </div>
-        <div class="completed-stats">
+        <div class="completed-stats" style="background-color:#e9f3f9;">
             <h1> {{ reminders.count }} </h1>
-            <h3> Pending </h3>
+            <h3> Low priority </h3>
         </div>
-        <div class="completed-stats">
-            <h1> {{ overdue_reminders|length }} </h1>
-            <h3> Overdue </h3>
+        <div class="completed-stats" style="background-color:#fef5f5">
+            <h1> {{ high_priority_reminders|length }} </h1>
+            <h3> High priority </h3>
         </div>
     </div>
 
     <div class="widget-container">
         {% if reminders %}
             {% for reminder in reminders %}
-                {% if reminder in overdue_reminders %}
+                {% if reminder in high_priority_reminders %}
                     <div class="reminder-widget" style="background:#fef5f5;">
                 {% else %}
                     <div class="reminder-widget">
@@ -66,13 +66,13 @@
                                 <svg style="color:grey; width:20px; transform:translateY(3px); margin-right:10px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                   <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                                 </svg>
-                                <span class="created-by"> <b> Set by {{ reminder.user }} ({{ reminder.user.account.role }}) · {{ reminder.date_added|timesince }} ago </b> </span>
+                                <span class="created-by"> <b> Set by {{ reminder.created_by.username }} · {{ reminder.date_added|timesince }} ago </b> </span>
                             </p>
                             <p style="color:grey; margin-top:0;">
                                 <svg style="color:grey; width:20px; transform:translateY(3px); margin-right:10px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                   <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
                                 </svg>
-                                {% if reminder not in overdue_reminders %}
+                                {% if reminder not in high_priority_reminders %}
                                     Due in {{ reminder.due_date|timeuntil }}
                                 {% else %}
                                     Due {{ reminder.due_date|timesince }} ago
@@ -96,10 +96,10 @@
                         </div>
 
                         <div class="complete-links">
-                            {% if reminder in overdue_reminders %}
-                                <span class="status" style="background-color:#ba2b32;"> Overdue </span>
+                            {% if reminder in high_priority_reminders %}
+                                <span class="status" style="border:solid #ba2b32E6; background:transparent; color:#ba2b32E6"> High priority </span>
                             {% else %}
-                                <span class="status" style="background-color:#0066cc;"> Pending </span>
+                                <span class="status" style="border:solid #0066ccE6; background:transparent; color:#0066ccE6"> Low priority </span>
                             {% endif %}
 
                             <a href="{% url 'reminders:complete_reminder' reminder.id %}" class="complete">
@@ -108,8 +108,8 @@
                         </div>
 
                         <dialog id="update-success">
-                            <h2> Update reminder? </h2>
-                            <h3> The selected reminder will be updated with the new content. </h3>
+                            <h2> Refresh reminder? </h2>
+                            <h3> The selected reminder will be refreshed with the new content. </h3>
                             <button id="closeDialog" class="closeDialog">Continue</button>
                         </dialog>
                     </div>
