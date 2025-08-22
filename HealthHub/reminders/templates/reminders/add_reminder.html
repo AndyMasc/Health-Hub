@@ -20,7 +20,7 @@
 
                 {% if request.user.account.role == 'Doctor' %}
                     <fieldset>
-                        <legend>Send to Patient: <br> Both you and the patient will be able to edit the reminder, and see its current status. </legend>
+                        <legend>Share with patient: <br> Both you and the patient will be able to edit the reminder, and see its current status. </legend>
                         {% for patient in patients %}
                             <div class="radio-group">
                                 <input type="radio" name="share_recipient" value="{{ patient.user.username }}" id="{{ patient.user.username }}">
@@ -33,7 +33,7 @@
                 {% elif request.user.account.role == 'Patient' %}
                     {% if doctor %}
                         <fieldset>
-                            <legend>Send to Doctor: <br> Both you and the doctor will be able to edit the reminder, and see its current status. </legend>
+                            <legend>Send with doctor: <br> Both you and the doctor will be able to edit the reminder, and see its current status. </legend>
                                 <div class="radio-group">
                                     <input type="radio" name="share_recipient" value="{{ doctor.user.username }}" id="{{ doctor.user.username }}">
                                     <label for="{{ doctor.user.username }}">{{ doctor.user.username }}</label>

@@ -2,8 +2,10 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+
 from .forms import CreateUserForm, AuthorizeUser, UpdateUser, AddPatientForm
-from .models import Patient, Account, Doctor
+from .models import Patient, Doctor
+
 
 # Create your views here.
 
@@ -84,13 +86,19 @@ def add_patient(request):
         patient_obj = authenticate(username=patient_user, password=patient_password)
 
         if patient_obj is not None:
-            patient = Patient.objects.get(user=patient_obj)
+            try:
+                patient = Patient.objects.get(user=patient_obj)
+            except Patient.DoesNotExist:
+                messages.error(request,'This user is not registered as a patient. Register a valid patient account.')
+                return render(request, 'authenticate/add_patient.html', {'form': form})
+
             doctor = Doctor.objects.get(user=request.user)
             if not Patient.objects.get(user=patient_obj).doctor:
                 patient.doctor = doctor
                 patient.save()
             else:
-                messages.error(request, 'Patient already registered.')
+                messages.error(request, 'This patient is already registered to a doctor.')
+                return render(request, 'authenticate/add_patient.html', {'form': form})
             return redirect('workspace:patients_view')
         else:
             messages.error(request, 'Invalid credentials. Please try again.')

@@ -10,11 +10,10 @@ def reminders_dash(request):
     now = timezone.now()
     today_start = now.replace(hour=0, minute=0, second=0, microsecond=0)
 
-    high_priority_reminders = Reminder.objects.filter(user=request.user, is_completed=False, due_date__lt=today_start)
     return render(request, 'reminders/reminders.html', {
-        'reminders': Reminder.objects.filter(user=request.user, is_completed=False).order_by('due_date'),
-        'completed_reminders': Reminder.objects.filter(user=request.user, is_completed=True).order_by('due_date').count(),
-        'high_priority_reminders': high_priority_reminders,
+        'reminders': Reminder.objects.filter(user=request.user, is_completed=False).order_by('-due_date'),
+        'completed_reminders': Reminder.objects.filter(user=request.user, is_completed=True).count(),
+        'high_priority_reminders': Reminder.objects.filter(user=request.user, is_completed=False, due_date__lt=today_start),
     })
 
 def add_reminder(request):
