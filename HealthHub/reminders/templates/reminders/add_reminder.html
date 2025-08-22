@@ -2,50 +2,52 @@
 
 {% block head %}
     {% load static %}
+    <link rel="stylesheet" href="{% static 'reminders/css/add_reminder_style.css' %}"
 {% endblock %}
 
 {% block content %}
     <div class="container">
-        <h1>
-            <span style="color:white">
-                Create a reminder
-            </span>
-        </h1>
-        <div class="form">
-            <form method="POST" action="" autocomplete="off">
-                {% csrf_token %}
-                <input type="text" id="title" name="title" placeholder="Reminder title" class="title" maxlength="70" required>
-                <textarea id="content" name="content" placeholder="Content..." class="content" maxlength="5000" required></textarea>
-                <input type="date" id="due_date" name="due_date" placeholder="Due date" class="due_date">
+        <h1>Create a reminder</h1>
+        <form method="POST" action="" autocomplete="off">
+            {% csrf_token %}
+            <input type="text" id="title" name="title" placeholder="Reminder title" class="title" maxlength="70" required>
+            <textarea id="content" name="content" placeholder="Content..." class="content" maxlength="5000" required></textarea>
 
-                {% if request.user.account.role == 'Doctor' %}
-                    <fieldset>
-                        <legend>Share with patient: <br> Both you and the patient will be able to edit the reminder, and see its current status. </legend>
+            <fieldset>
+                <legend style="color:grey;"> Due date </legend>
+                <input type="date" id="due_date" name="due_date" placeholder="Due date" class="due_date">
+                <p> Optional: If not set, the reminder will continue indefinitely. </p>
+            </fieldset>
+
+            {% if request.user.account.role == 'Doctor' %}
+                <fieldset>
+                    <legend style="color:grey;"> Share with patient </legend>
+                    <select name="share_recipient" value="{{ patient.user.username }}" id="{{ patient.user.username }}">
+                        <option value="" disabled selected> <span style="color:grey;"> Select a patient </span> </option>
                         {% for patient in patients %}
-                            <div class="radio-group">
-                                <input type="radio" name="share_recipient" value="{{ patient.user.username }}" id="{{ patient.user.username }}">
-                                <label for="{{ patient.user.username }}">{{ patient.user.username }}</label>
-                            </div>
+                            <option value="{{ patient.user.username }}">{{ patient.user.username }}</option>
                         {% empty %}
                             <p>No patients available. <a href="{% url 'authenticate:add_patient' %}">Add a patient first</a>.</p>
                         {% endfor %}
+                    </select>
+                    <p> Optional: Both parties can edit the reminder, and view its status. </p>
+                </fieldset>
+            {% elif request.user.account.role == 'Patient' %}
+                {% if doctor %}
+                    <fieldset>
+                        <legend style="color:grey;"> Share with doctor </legend>
+                        <select name="share_recipient" value="{{ doctor.user.username }}" id="{{ doctor.user.username }}">
+                        <option value="" disabled selected> <span style="color:grey;"> Select your doctor </span> </option>
+                            <option value="{{ doctor.user.username }}">{{ doctor.user.username }}</option>
+                        </select>
+                        <p> Optional: Both parties can edit the reminder, and view its status. </p>
                     </fieldset>
-                {% elif request.user.account.role == 'Patient' %}
-                    {% if doctor %}
-                        <fieldset>
-                            <legend>Send with doctor: <br> Both you and the doctor will be able to edit the reminder, and see its current status. </legend>
-                                <div class="radio-group">
-                                    <input type="radio" name="share_recipient" value="{{ doctor.user.username }}" id="{{ doctor.user.username }}">
-                                    <label for="{{ doctor.user.username }}">{{ doctor.user.username }}</label>
-                                </div>
-                        </fieldset>
-                    {% endif %}
                 {% endif %}
+            {% endif %}
 
-                {% block submit %}
-                    <input type="submit" value="Create">
-                {% endblock %}
-            </form>
-        </div>
+            {% block submit %}
+                <input type="submit" value="Create reminder">
+            {% endblock %}
+        </form>
     </div>
 {% endblock %}
