@@ -16,7 +16,7 @@
             <fieldset>
                 <legend style="color:grey;"> Due date </legend>
                 <input type="date" id="due_date" name="due_date" placeholder="Due date" class="due_date">
-                <p> Optional: If not set, the reminder will continue indefinitely. </p>
+                <p> Optional: If not set, the reminder will last indefinitely. </p>
             </fieldset>
 
             {% if request.user.account.role == 'Doctor' %}

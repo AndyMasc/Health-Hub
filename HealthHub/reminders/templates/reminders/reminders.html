@@ -37,12 +37,12 @@
 
     <div class="reminder-stats">
         <div class="completed-stats" style="background-color:#e9f9e9;">
-            <h1> {{ completed_reminders }} </h1>
+            <h1> {{ completed_reminders|length }} </h1>
             <h3> Completed </h3>
         </div>
         <div class="completed-stats" style="background-color:#e9f3f9;">
-            <h1> {{ reminders.count }} </h1>
-            <h3> Low priority </h3>
+            <h1> {{ reminders|length }} </h1>
+            <h3> Pending </h3>
         </div>
         <div class="completed-stats" style="background-color:#fef5f5">
             <h1> {{ high_priority_reminders|length }} </h1>
