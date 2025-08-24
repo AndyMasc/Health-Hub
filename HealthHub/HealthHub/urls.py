@@ -27,4 +27,5 @@ urlpatterns = [
     path('workspace/', include('workspace.urls')),
     path('symptom_diagnoser/', include('symptom_diagnoser.urls')),
     path('reminders/', include('reminders.urls')),
+    path('health_records/',  include('health_records.urls')),
 ]

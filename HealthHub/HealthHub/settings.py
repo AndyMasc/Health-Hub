@@ -53,7 +53,10 @@ INSTALLED_APPS = [
     'workspace',
     'symptom_diagnoser',
     'reminders',
+    'health_records',
 ]
+
+ASGI_APPLICATION = 'core.asgi.application'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

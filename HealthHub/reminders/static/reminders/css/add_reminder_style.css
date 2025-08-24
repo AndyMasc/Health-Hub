@@ -32,6 +32,7 @@ input[type="text"],
 input[type="date"],
 textarea,
 input[type="submit"],
+input[type="number"],
 fieldset,
 select {
     font-family: "Inter", sans-serif;

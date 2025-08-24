@@ -47,7 +47,8 @@ h1 {
 input[type='email'],
 input[type='password'],
 select,
-input[type='text'] {
+input[type='text'],
+input[type='date'] {
     background-color: white;
     color: #22223b;
     width: 100%;
@@ -57,6 +58,7 @@ input[type='text'] {
     height: 50px;
     padding: 0px 10px;
     box-sizing: border-box;
+    font-family: "Inter", sans-serif;
 }
 
 input[type='submit'] {

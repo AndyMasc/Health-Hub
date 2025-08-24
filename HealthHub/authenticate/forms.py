@@ -19,18 +19,23 @@ class CreateUserForm(UserCreationForm):
         initial='Patient',
         widget=forms.Select(attrs={'class': 'form-select'})
     )
+    full_name = forms.CharField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Full Name'}))
+    gender = forms.ChoiceField(required=True, choices=[('Male', 'Male'), ('Female', 'Female')], widget=forms.Select(attrs={'placeholder': 'Gender'}))
+    date_of_birth = forms.DateField(required=True, widget=forms.DateInput(attrs={'placeholder': 'Date of Birth', 'type': 'date'}))
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2', 'role']
+        fields = ['username', 'full_name', 'gender', 'email', 'password1', 'password2', 'role', 'date_of_birth']
 
     def save(self, commit=True):
         user = super().save(commit=commit)
         if commit:
-            # Create the Account instance with the selected role
             Account.objects.create(
                 user=user,
-                role=self.cleaned_data['role']
+                role=self.cleaned_data['role'],
+                gender=self.cleaned_data['gender'],
+                full_name=self.cleaned_data['full_name'],
+                date_of_birth=self.cleaned_data['date_of_birth']
             )
         return user
 

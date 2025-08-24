@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from .forms import CreateUserForm, AuthorizeUser, UpdateUser, AddPatientForm
-from .models import Patient, Doctor
+from .models import Patient, Doctor, Account
 
 
 # Create your views here.
@@ -39,6 +39,7 @@ def register(request):
             form.save()
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password1'])
             role = form.cleaned_data['role']
+
             if role == 'Doctor':
                 Doctor.objects.create(user=user)
             elif role == 'Patient':
