@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
-from authenticate.models import Patient
+from authenticate.models import Patient, Doctor
 
 
 # Create your models here.
@@ -19,7 +19,7 @@ class HealthRecord(models.Model):
 
     extra_notes = models.TextField()
 
-    current_doctor = models.CharField(max_length=100)
+    current_doctor = models.ForeignKey(Doctor, on_delete=models.SET_NULL, null=True, blank=True)
 
-    record_creation_date = models.DateField(auto_now_add=True, null=True, blank=True)
+    record_creation_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 

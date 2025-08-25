@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import remove_patient
 
 app_name = 'authenticate'
 urlpatterns = [
@@ -12,4 +13,5 @@ urlpatterns = [
     path('update_user/', views.update_user, name='update_user'),
 
     path('add_patient/', views.add_patient, name='add_patient'),
+    path('remove_patient/<int:patient_id>/', views.remove_patient, name='remove_patient'),
 ]

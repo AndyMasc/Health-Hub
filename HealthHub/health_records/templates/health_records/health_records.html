@@ -11,9 +11,10 @@
             <h1> {{ patient.account.full_name }} </h1>
             <h2> Health record </h2>
         </div>
+        {% if record %}
         <div class="record-card">
             <div class="created-on">
-                <h2 style="font-weight:500; color:#22223b; font-size:1.2rem; text-align:left;"> {{ record.record_creation_date }} </h2>
+                <h2 style="font-weight:500; color:#22223b; font-size:1.2rem; text-align:left;"> Updated {{ record.record_creation_date }} </h2>
                 <div>
                     <a href="#"> View history </a>
                     {% if request.user.account.role == 'Doctor' %}
@@ -50,8 +51,8 @@
                 <h3> <span class="field-data"> {{ record.medication_history }} </span> </h3>
             </div>
             <div class="field">
-                <h3> CURRENT DOCTOR </h3>
-                <h3> <span class="field-data"> {{ record.current_doctor }} </span> </h3>
+                <h3> CURRENT DOCTOR (CREATED BY)</h3>
+                <h3> <span class="field-data"> Dr {{ record.current_doctor.user.account.full_name }} </span> </h3>
             </div>
             {% if record.extra_notes %}
                 <div class="field-notes">
@@ -62,5 +63,14 @@
                 </div>
             {% endif %}
         </div>
+        {% else %}
+            {% if request.user.account.role == 'Doctor' %}
+                <h2> This patient has no health records. </h2>
+                <a style="margin-top:1rem;" href="{% url 'health_records:add_record' %}"> Add record </a>
+            {% else %}
+                <h2> Enroll with a doctor and ask them to add records. </h2>
+            {% endif %}
+        {% endif %}
+        <a style="margin-top:2rem;" href="{% url 'workspace:dashboard' %}" class="return-home"> Return home </a>
     </div>
 {% endblock %}

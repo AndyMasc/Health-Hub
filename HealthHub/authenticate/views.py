@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 from django.shortcuts import render, redirect
 
 from .forms import CreateUserForm, AuthorizeUser, UpdateUser, AddPatientForm
@@ -39,7 +40,6 @@ def register(request):
             form.save()
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password1'])
             role = form.cleaned_data['role']
-
             if role == 'Doctor':
                 Doctor.objects.create(user=user)
             elif role == 'Patient':
@@ -94,13 +94,20 @@ def add_patient(request):
                 return render(request, 'authenticate/add_patient.html', {'form': form})
 
             doctor = Doctor.objects.get(user=request.user)
-            if not Patient.objects.get(user=patient_obj).doctor:
-                patient.doctor = doctor
-                patient.save()
-            else:
-                messages.error(request, 'This patient is already registered to a doctor.')
-                return render(request, 'authenticate/add_patient.html', {'form': form})
+            patient.doctor.add(doctor)
+            patient.save()
             return redirect('workspace:patients_view')
         else:
             messages.error(request, 'Invalid credentials. Please try again.')
     return render(request, 'authenticate/add_patient.html', {'form': form})
+
+@login_required()
+def remove_patient(request, patient_id):
+    patient = Patient.objects.get(id=patient_id)
+    if (request.user.account.role == 'Doctor') and (patient.doctor.user == request.user):
+        patient.doctor = None
+        patient.save()
+        messages.success(request, 'Patient has been successfully removed from your care.')
+        return redirect('workspace:patients_view')
+    else:
+        raise PermissionDenied
