@@ -34,6 +34,13 @@
     align-items: center;
     border-bottom: solid rgb(204, 204, 204, 0.43);
     justify-content: space-between;
+    min-height: 1em;
+}
+
+.actions {
+    display: flex;
+    width: 100%;
+    justify-content: end;
 }
 
 a {
@@ -100,8 +107,18 @@ h3 {
     font-size: 1rem;
 }
 
-@media(max-width: 600px) {
+@media(max-width: 900px) {
     .created-on, .field, .field-notes {
         flex-direction: column;
+    }
+    .actions {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .record-card {
+        width: 95%;
+        height: 90vh;
     }
 }

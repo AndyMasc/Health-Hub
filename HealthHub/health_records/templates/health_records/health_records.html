@@ -15,7 +15,7 @@
         <div class="record-card">
             <div class="created-on">
                 <h2 style="font-weight:500; color:#22223b; font-size:1.2rem; text-align:left;"> Updated {{ record.record_creation_date }} </h2>
-                <div>
+                <div class="actions">
                     <a href="#"> View history </a>
                     {% if request.user.account.role == 'Doctor' %}
                         <a href="{% url 'health_records:add_record' %}"> Add record </a>

@@ -1,69 +1,72 @@
-.navbar {
-    display: flex;
-    align-items: start;
-    justify-content: start;
-    background-color: #f8f9fa;
-    border-right: 1px solid #dee2e6;
-    padding: 30px;
-    box-sizing: border-box;
-    left: 0;
-    top: 0;
-    position: fixed;
-    width: 25%;
-    height: 100vh;
-    flex-direction: column;
+body {
+    padding: 10px;
 }
 
-.navbar ul {
-    list-style: none;
-    padding: 0;
+h1, p {
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+}
+p {
+    font-weight: 350;
+    color: grey;
     margin: 0;
-    display: flex;
-    flex-direction: column;
+}
+
+.header {
+    margin: 3rem 0;
+}
+
+.app-suite, .main-actions {
+    display: grid;
     width: 100%;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+.main-actions {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    margin-bottom: 1rem;
+}
+
+a {
+    color: black;
+    font-family: "Inter", sans-serif;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.app {
+    border: solid lightgray;
+    width: auto;
+    height: 240px;
+    border-radius: 10px;
+    padding: 1rem;
+    box-sizing: border-box;
+    display: flex;
     justify-content: center;
     align-items: center;
-    gap: 16px;
-}
-
-.navbar li {
-    width: 100%;
-    padding: 10px 20px;
-    text-align: left;
-}
-
-.navbar a {
-    text-decoration: none;
-    color: #333;
-    font-size: 20px;
-    font-family: "Inter", sans-serif;
-}
-
-h1 {
-    font-size: 24px;
-    font-family: "Inter", sans-serif;
-}
-
-p {
-    font-size: 16px;
-    font-family: "Inter", sans-serif;
-}
-
-.patient-dashboard-container {
-    display: flex;
     flex-direction: column;
-    width: calc(100% - 25%);
-    position: absolute;
-    right: 0;
-    padding: 30px;
-    box-sizing: border-box;
 }
 
-.widget {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    margin-bottom: 20px;
-    padding: 20px;
+a, .app {
+    transition: all 0.2s ease-in-out;
 }
 
+h3 {
+    font-weight: 500;
+}
+
+svg {
+    width: 50px;
+    background-color: rgba(234, 233, 233, 0.32);
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid lightgray;
+}
+
+a:hover, .app:hover {
+    transform: translateY(-5px);
+}
+.app:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
