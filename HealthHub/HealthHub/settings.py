@@ -35,7 +35,7 @@ ALLOWED_HOSTS = ['healthhub.koyeb.app', '127.0.0.1', 'localhost']
 
 LOGIN_URL = "authenticate:signin"
 
-CSRF_COOKIE_SECURE = True
+'''CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 SECURE_HSTS_SECONDS = 31536000  # Enable HSTS for 1 year
 SECURE_SSL_REDIRECT = True  # Redirect all HTTP requests to HTTPS
@@ -47,6 +47,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
 X_FRAME_OPTIONS = 'DENY'
+'''
 
 # Application definition
 
