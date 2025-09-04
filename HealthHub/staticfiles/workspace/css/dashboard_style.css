@@ -1,0 +1,92 @@
+body {
+    padding: 0 2rem;
+}
+
+h1, p {
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+}
+p {
+    font-weight: 350;
+    color: grey;
+    margin: 0;
+}
+
+.header {
+    margin: 2.5rem 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.header h1, .header p {
+    text-align: left;
+}
+
+.app-suite, .main-actions {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+.main-actions {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    margin-bottom: 1rem;
+}
+.app-suite {
+    margin-bottom: 2.5rem;
+}
+
+a {
+    color: black;
+    font-family: "Inter", sans-serif;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+.app {
+    border: solid lightgray;
+    width: auto;
+    height: 240px;
+    border-radius: 10px;
+    padding: 1rem;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+a, .app {
+    transition: all 0.2s ease-in-out;
+}
+
+h3 {
+    font-weight: 500;
+}
+
+svg {
+    width: 50px;
+    background-color: rgba(234, 233, 233, 0.32);
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid lightgray;
+}
+
+a:hover, .app:hover {
+    transform: translateY(-2px);
+}
+.app:hover {
+    box-shadow: 1px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 900px) {
+    .header {
+        gap: 1rem;
+        flex-direction: column;
+    }
+    .header h1, .header p {
+        text-align: center;
+    }
+}

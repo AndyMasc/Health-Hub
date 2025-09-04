@@ -13,10 +13,10 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-from django.utils import timezone
-
 
 load_dotenv()
+
+
 
 from django.conf.global_settings import SECRET_KEY
 
@@ -33,12 +33,24 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['healthhub.koyeb.app', '127.0.0.1', 'localhost']
 
 LOGIN_URL = "authenticate:signin"
 
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+SECURE_HSTS_SECONDS = 31536000  # Enable HSTS for 1 year
+SECURE_SSL_REDIRECT = True  # Redirect all HTTP requests to HTTPS
+SECURE_HSTS_PRELOAD = True  # Preload HSTS for all subdomains
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Include all subdomains in HSTS policy
+CSRF_COOKIE_HTTPONLY = True  # Prevent JavaScript access to CSRF cookie
+SESSION_COOKIE_HTTPONLY = True  # Prevent JavaScript access to session cookie
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
+X_FRAME_OPTIONS = 'DENY'
 
 # Application definition
 
@@ -64,6 +76,9 @@ ASGI_APPLICATION = 'core.asgi.application'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -73,6 +88,9 @@ MIDDLEWARE = [
 
     "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 ROOT_URLCONF = 'HealthHub.urls'
 
