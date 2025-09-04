@@ -57,6 +57,11 @@ h1 {
     margin: 0;
 }
 
+.actions {
+    display: flex;
+    flex-direction: row;
+}
+
 a {
     background-color: #0066cc;
     padding: 7px 10px;
@@ -82,6 +87,7 @@ h4 {
     display: flex;
     width: 100%;
     justify-content: space-between;
+    gap: 0.5rem;
 }
 
 .status {
@@ -107,8 +113,19 @@ h4 {
     border: solid green;
 }
 
+@media(max-width: 900px) {
+    .buttons, .header {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
 @media(max-width: 600px) {
     .status {
-        position: relative.
+        position: relative;
+        align-self: start;
+    }
+    .actions {
+        flex-direction: column;
     }
 }

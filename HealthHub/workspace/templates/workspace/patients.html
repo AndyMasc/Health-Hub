@@ -8,7 +8,7 @@
 {% block content %}
     <div class="header">
         <h1>Patient dashboard</h1>
-        <div>
+        <div class="actions">
             <a style="background:transparent; color:black;" href="{% url 'workspace:dashboard' %}" class="return-home">
                 <svg style="width:20px; transform:translateY(4px); margin-right:5px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
@@ -55,8 +55,8 @@
                         </h4>
                     </div>
                     <div class="buttons">
-                        <a style="width:75%;" href="{% url 'health_records:health_records' patient.id %}"> View health record </a>
-                        <a style="border:solid #ba2b32; background:transparent; color:#ba2b32; width:20%;" href="{% url 'authenticate:remove_patient' patient.id %}"> Disassociate patient </a>
+                        <a href="{% url 'health_records:health_records' patient.id %}"> View health record </a>
+                        <a style="border:solid #ba2b32; background:transparent; color:#ba2b32;" href="{% url 'authenticate:remove_patient' patient.id %}"> Disassociate patient </a>
                     </div>
                 </div>
             {% endfor %}

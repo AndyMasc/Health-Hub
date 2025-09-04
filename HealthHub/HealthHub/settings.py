@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+from django.utils import timezone
+
 
 load_dotenv()
 
@@ -127,7 +129,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Pacific/Auckland'
 USE_I18N = True
 USE_TZ = True
 
