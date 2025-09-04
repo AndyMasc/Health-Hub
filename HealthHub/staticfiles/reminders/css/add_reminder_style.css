@@ -1,0 +1,74 @@
+body {
+    font-family: "Inter", sans-serif;
+    overflow-x: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    text-align: center;
+    color: black;
+    font-weight: 500;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    box-sizing: border-box;
+    gap: 1rem;
+}
+
+input[type="text"],
+input[type="date"],
+textarea,
+input[type="submit"],
+input[type="number"],
+fieldset,
+select {
+    font-family: "Inter", sans-serif;
+    color: black;
+    resize: none;
+    border: solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+textarea {
+    height: 200px;
+}
+
+input[type="submit"] {
+    background-color: #4a4e69;
+    padding: 8px 10px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+input[type="submit"]:hover {
+    background-color: #22223b;
+}
+
+select,
+input[type="date"] {
+    box-sizing: border-box;
+    margin-top: 0.5rem;
+    padding: 5px 10px;
+    width: 100%;
+}
+
+p {
+    color: grey;
+    margin-bottom: 0;
+    margin-top: 1.5rem;
+}

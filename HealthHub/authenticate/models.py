@@ -18,7 +18,7 @@ class Doctor(models.Model):
 
 class Patient(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    doctor = models.ManyToManyField(Doctor, related_name='patients', null=True, blank=True)
+    doctor = models.ManyToManyField(Doctor, related_name='patients', blank=True)
 
     def __str__(self):
         return self.user.username
