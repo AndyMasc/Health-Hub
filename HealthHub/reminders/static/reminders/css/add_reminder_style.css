@@ -52,6 +52,11 @@ input[type="submit"] {
     background-color: #4a4e69;
     padding: 8px 10px;
     color: white;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+input[type="submit"]:hover {
+    background-color: #22223b;
 }
 
 select,

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'health_records/css/record_history_style.css' %}" type="text/css">
+{% endblock %}
+
+{% block content %}
+    <div class="header">
+        <h1> {{ patient.account.full_name }} - Medical Record History</h1>
+        <a style="background:transparent; color:black;" href="{% url 'health_records:health_records' patient.patient.id %}" class="return-home">
+            <svg style="width:20px; transform:translateY(4px); margin-right:5px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+            </svg>
+            View Current Record
+        </a>
+    </div>
+    <table class="table table-striped">
+        <tr>
+            <th> DATE OF BIRTH </th>
+            <th> ADDRESS </th>
+            <th> LANGUAGE </th>
+            <th> WEIGHT </th>
+            <th> HEIGHT </th>
+            <th> ALLERGIES </th>
+            <th> CURRENT DOCTOR </th>
+            <th> NOTES </th>
+            <th> MEDICATION HISTORY </th>
+        </tr>
+        {% for record in records %}
+            <tr>
+                <td style="color:black; font-weight:600;"> {{ patient.account.date_of_birth }} </td>
+                <td> {{ record.address }} </td>
+                <td style="background-color:rgba(59,250,183,0.18);"> {{ record.language }} </td>
+                <td> <span style="color:#8212ea"> {{ record.weight }} </span> kg </td>
+                <td> <span style="color:#8212ea"> {{ record.height }} </span> cm </td>
+                <td style="color:#ba2b32"> {{ record.allergies }} </td>
+                <td style="border-right: solid #f6d91e; color:#0066cc; font-weight:600;"> Dr {{ record.current_doctor.user.account.full_name }} </td>
+                <td style="background-color:#fefce8; border-right:solid #F6D91EFF;"> {{ record.extra_notes|linebreaks }} </td>
+                <td style="background-color:#fefce8; border-right:solid #F6D91EFF;"> {{ record.medication_history|linebreaks }} </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

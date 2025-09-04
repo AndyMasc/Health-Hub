@@ -16,7 +16,7 @@
             <div class="created-on">
                 <h2 style="font-weight:500; color:#22223b; font-size:1.2rem; text-align:left;"> Updated {{ record.record_creation_date }} </h2>
                 <div class="actions">
-                    <a href="#"> View history </a>
+                    <a href="{% url 'health_records:record_history' patient.patient.id %}"> Record history </a>
                     {% if request.user.account.role == 'Doctor' %}
                         <a href="{% url 'health_records:add_record' %}"> Add record </a>
                     {% endif %}
@@ -47,10 +47,6 @@
                 <h3> <span class="field-data"> {{ record.allergies }} </span> </h3>
             </div>
             <div class="field">
-                <h3> MEDICATION HISTORY </h3>
-                <h3> <span class="field-data"> {{ record.medication_history }} </span> </h3>
-            </div>
-            <div class="field">
                 <h3> CURRENT DOCTOR (CREATED BY)</h3>
                 <h3> <span class="field-data"> Dr {{ record.current_doctor.user.account.full_name }} </span> </h3>
             </div>
@@ -58,7 +54,13 @@
                 <div class="field-notes">
                     <h3> NOTES </h3>
                     <div class="notes">
-                        <h3> <span class="field-data-notes"> {{ record.extra_notes }} </span> </h3>
+                        <h3> <span class="field-data-notes"> {{ record.extra_notes|linebreaks }} </span> </h3>
+                    </div>
+                </div>
+                <div class="field-notes">
+                    <h3> MEDICATION HISTORY </h3>
+                    <div class="notes">
+                        <h3> <span class="field-data"> {{ record.medication_history|linebreaks }} </span> </h3>
                     </div>
                 </div>
             {% endif %}
@@ -71,6 +73,11 @@
                 <h2> Enroll with a doctor and ask them to add records. </h2>
             {% endif %}
         {% endif %}
-        <a style="margin-top:2rem;" href="{% url 'workspace:dashboard' %}" class="return-home"> Return home </a>
+        <a style="background:transparent; color:black;" href="{% url 'workspace:dashboard' %}" class="return-home">
+            <svg style="width:20px; transform:translateY(4px); margin-right:5px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+            </svg>
+            Return home
+        </a>
     </div>
 {% endblock %}

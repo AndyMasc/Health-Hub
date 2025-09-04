@@ -32,6 +32,10 @@ h2 {
     font-size: 1.8rem;
     color: #4a4e69;
     font-family: "Inter", sans-serif;
+    text-align: center;
+}
+h1, h2, p {
+    text-align: center;
 }
 
 .rediagnose {
@@ -108,6 +112,7 @@ button {
     font-size: 18px;
     color: #22223b;
     margin: 10px 0;
+    text-align: left;
 }
 
 .loader {
@@ -128,12 +133,11 @@ button {
   100% { transform: rotate(360deg); }
 }
 
-@media (max-width: 768px) {
-    h1, h2, p {
-        text-align: center;
-    }
-
+@media (max-width: 900px) {
     textarea, button {
         width: 80%;
+    }
+    textarea {
+        height: 40vh;
     }
 }

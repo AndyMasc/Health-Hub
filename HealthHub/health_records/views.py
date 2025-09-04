@@ -40,8 +40,19 @@ def add_record(request):
             doctor_users = [doctor.user for doctor in doctors]
             record.viewers.add(patient, *doctor_users)
             record.save()
-            return redirect('workspace:dashboard')
+            return redirect('workspace:patients_view')
         return render(request, 'health_records/add_record.html', {'patients':request.user.doctor.patients.all()})
     else:
         raise Http404('You\'re not allowed to see this page.')
 
+def record_history(request, patient_id):
+    patient = Patient.objects.get(id=patient_id)
+    patient_user = User.objects.get(patient=patient)
+
+    if (patient_user == request.user) or (patient.doctor.filter(user=request.user).exists()):
+        return render(request, 'health_records/record_history.html', {
+            'records': HealthRecord.objects.filter(viewers=patient_user).order_by('-record_creation_date'),
+            'patient': patient_user,
+        })
+    else:
+        raise Http404('You\'re not allowed here')

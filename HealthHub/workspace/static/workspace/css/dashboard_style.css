@@ -1,11 +1,11 @@
 body {
-    padding: 10px;
+    padding: 0 2rem;
 }
 
 h1, p {
     text-align: center;
     font-family: "Inter", sans-serif;
-    font-weight: 400;
+    font-weight: 500;
 }
 p {
     font-weight: 350;
@@ -14,7 +14,14 @@ p {
 }
 
 .header {
-    margin: 3rem 0;
+    margin: 2.5rem 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.header h1, .header p {
+    text-align: left;
 }
 
 .app-suite, .main-actions {
@@ -26,6 +33,9 @@ p {
 .main-actions {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     margin-bottom: 1rem;
+}
+.app-suite {
+    margin-bottom: 2.5rem;
 }
 
 a {
@@ -65,8 +75,18 @@ svg {
 }
 
 a:hover, .app:hover {
-    transform: translateY(-5px);
+    transform: translateY(-2px);
 }
 .app:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 900px) {
+    .header {
+        gap: 1rem;
+        flex-direction: column;
+    }
+    .header h1, .header p {
+        text-align: center;
+    }
 }

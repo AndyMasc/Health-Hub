@@ -2,7 +2,7 @@
 
 {% block head %}
     {% load static %}
-    <link rel="stylesheet" href="{% static 'reminders/css/add_reminder_style.css' %}"
+    <link rel="stylesheet" href="{% static 'reminders/css/add_reminder_style.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -33,18 +33,17 @@
                     <p> Optional: Both parties can edit the reminder, and view its status. </p>
                 </fieldset>
             {% elif request.user.account.role == 'Patient' %}
-                {% if doctor %}
-                    <fieldset>
-                        <legend style="color:grey;"> Share with doctor </legend>
-                        <select name="share_recipient" value="{{ doctor.user.username }}" id="{{ doctor.user.username }}">
-                        <option value="" disabled selected> <span style="color:grey;"> Select your doctor </span> </option>
-                            <option value="{{ doctor.user.username }}">{{ doctor.user.username }}</option>
-                        </select>
-                        <p> Optional: Both parties can edit the reminder, and view its status. </p>
-                    </fieldset>
-                {% endif %}
+                <fieldset>
+                    <legend style="color:grey;">Share with doctor</legend>
+                    <select name="share_recipient">
+                        <option value="" disabled selected>Select your doctor</option>
+                        {% for doc in doctor %}
+                            <option value="{{ doc.user.username }}">{{ doc.user.username }}</option>
+                        {% endfor %}
+                    </select>
+                    <p>Optional: Both parties can edit the reminder, and view its status.</p>
+                </fieldset>
             {% endif %}
-
             {% block submit %}
                 <input type="submit" value="Create reminder">
             {% endblock %}

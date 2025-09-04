@@ -104,10 +104,9 @@ def add_patient(request):
 @login_required()
 def remove_patient(request, patient_id):
     patient = Patient.objects.get(id=patient_id)
-    if (request.user.account.role == 'Doctor') and (patient.doctor.user == request.user):
-        patient.doctor = None
+    if (request.user.account.role == 'Doctor') and patient.doctor.filter(user=request.user).exists():
+        patient.doctor.remove(request.user.doctor)
         patient.save()
-        messages.success(request, 'Patient has been successfully removed from your care.')
         return redirect('workspace:patients_view')
     else:
         raise PermissionDenied

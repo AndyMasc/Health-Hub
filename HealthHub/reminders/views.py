@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from .models import Reminder
 from django.utils import timezone
-from authenticate.models import Account, Patient
+from authenticate.models import Account, Patient, Doctor
 
 # Create your views here.
 
@@ -35,7 +35,10 @@ def add_reminder(request):
         patients = request.user.doctor.patients.all()
         return render(request, 'reminders/add_reminder.html', {'patients': patients})
     else:
-        doctor = request.user.patient.doctor
+        try:
+            doctor = request.user.patient.doctor.all()
+        except AttributeError:
+            doctor = []
         return render(request, 'reminders/add_reminder.html', {'doctor': doctor})
 
 def complete_reminder(request, Reminder_id):

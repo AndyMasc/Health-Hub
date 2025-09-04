@@ -1,10 +1,12 @@
 body {
     overflow-x: hidden;
+    margin: 0;
+    padding: 1rem;
 }
 
 h1 {
     font-family: "Inter", sans-serif;
-    font-size: 64px;
+    font-size: 58px;
     font-weight: 750;
     color: #22223b;
     letter-spacing: -0.01em;
@@ -17,13 +19,12 @@ p {
     font-size: 22px;
     line-height: 150%;
     font-weight: 400;
-    max-width: 90%;
 }
 
 .navbar {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     position: fixed;
     width: 100%;
     height: 61px;
@@ -38,6 +39,8 @@ p {
 .logo {
     display: flex;
     align-items: center;
+    justify-self: center;
+    align-self: center;
 }
 
 .logo img {
@@ -101,17 +104,18 @@ p {
 
 .hero-section-contents {
     width: 85%;
-    display: grid;
-    place-items: center;
-    grid-template-columns: minmax(300px, 1fr) minmax(300px, 1fr);
+    display: flex;
+    align-items: center;
     gap: 61px;
+    flex-grow: 1;
 }
 
 .hero-section-text {
     display: flex;
     flex-direction: column;
-    align-items: start;
     width: 100%;
+    justify-content: space-between;
+    flex: 1;
 }
 
 .CTA-button {
@@ -134,18 +138,18 @@ p {
 }
 
 .hero-image {
-    height: 90vh;
+    height: 80vh;
     border-radius: 10px;
     z-index: 0;
+    flex: 1;
 }
 
 .trust-badges {
     display: grid;
     grid-template-rows: auto auto;
     width: 100%;
-    border-radius: 50%;
-    position: relative;
-    top: 14vh;
+    position: absolute;
+    margin-top: 450px;
 }
 
 .trust-badges p {
@@ -167,12 +171,157 @@ p {
     font-family: "Inter", sans-serif;
 }
 
+.problem-container {
+    min-height: calc(100vh - 61px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.features-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    width: 100%;
+    padding: 2.5rem;
+    gap: 2rem;
+    box-sizing: border-box;
+}
+
+.widget {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    border-radius: 10px;
+    padding: 1rem;
+    box-sizing: border-box;
+    justify-content: center;
+    flex-direction: column;
+    height: 400px;
+    transition: all 0.3s ease-in-out;
+    border: solid #cccccc;
+}
+.widget h2 {
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+}
+.widget svg {
+    color: #3d3d3d;
+    width: 100px;
+}
+.widget p {
+    text-align: center;
+    font-size: 16px;
+    margin: 0;
+}
+.widget:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 8px 0 rgb(204, 204, 204), 0 6px 20px 0 rgb(204, 204, 204);
+}
+
+.problem-container a {
+    text-decoration: none;
+    color: white;
+    padding: 1rem;
+    background-color: #0066cc;
+    border-radius: 10px;
+    font-family: "Inter", sans-serif;
+}
+
 @media (max-width: 1200px) {
+    .hero-section-text {
+        max-width: 60%;
+    }
     .hero-section-contents {
-        grid-template-columns: 1fr;
-        gap: 32px;
+        width: 92%;
+        gap: 40px;
     }
     .hero-image {
-        order: -1;
+        height: auto;
+        max-height: 65vh;
+        width: 100%;
+        object-fit: cover;
+    }
+    .trust-badges {
+        display: none;
+    }
+}
+
+@media (max-width: 992px) {
+    .hero-section-text {
+        max-width: 80%;
+    }
+
+    h1 {
+        font-size: 42px;
+        line-height: 1.1;
+    }
+
+    p {
+        font-size: 18px;
+        max-width: 100%;
+    }
+    .CTA-button {
+        margin-bottom: 3rem;
+    }
+
+    .hero-section-contents {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 28px;
+        width: min(960px, 94%);
+    }
+
+    .hero-section-text {
+        align-items: center;
+    }
+
+    .CTA-button {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .trust-badges {
+        position: relative;
+        margin-top: 16px;
+        width: 100%;
+        justify-items: center;
+        text-align: center;
+    }
+
+    .trust-badges p {
+        justify-self: center;
+        font-size: 16px;
+        max-width: 28rem;
+    }
+
+    .trust-logos {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .hero-image {
+        order: 2;
+        width: 100%;
+        height: auto;
+        max-height: 50vh;
+        border-radius: 12px;
+    }
+}
+@media (max-width: 900px) {
+    .hero-section-text {
+        max-width: 90%;
+    }
+
+    .navbar ul {
+        display: none;
+    }
+    .problem-container h1, .problem-container p {
+        text-align: center;
     }
 }
