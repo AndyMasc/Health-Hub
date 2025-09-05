@@ -17,7 +17,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-change-this-in-production")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = "False"
+DEBUG = False
 
 ALLOWED_HOSTS = ['healthhub.koyeb.app', '127.0.0.1', 'localhost', '*']
 
@@ -118,14 +118,7 @@ if all([db_name, db_user, db_password, db_host, db_port]):
             },
         }
     }
-else:
-    # Fallback to SQLite
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
