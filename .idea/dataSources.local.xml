@@ -14,5 +14,15 @@
         </introspection-scope>
       </schema-mapping>
     </data-source>
+    <data-source name="postgres@aws-1-us-west-1.pooler.supabase.com" uuid="74f2ae36-849c-4216-bd0d-fdce6283714f">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>postgres.ukwpguayzpkcohzxwpha</user-name>
+      <schema-mapping />
+      <ssl-config use-ide-store="true" use-java-store="true" use-system-store="true">
+        <enabled>true</enabled>
+        <mode>REQUIRE</mode>
+      </ssl-config>
+    </data-source>
   </component>
 </project>
