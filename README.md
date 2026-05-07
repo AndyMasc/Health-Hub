@@ -35,11 +35,9 @@ A health management platform that puts patients at the core and pushes a collabo
 
 ## Technologs used
 - **Backend**: Django
-- **Database**: PostgreSQL (Production) / SQLite (Development)
+- **Database**: Postgre / SQLite
 - **Frontend**: HTML, CSS, JavaScript
-- **AI Integration**: Google Gemini API
 - **Static Files**: WhiteNoise
-- **Deployment**: Koyeb
 - **Environment Management**: python-dotenv
 - **Web Server**: Gunicorn
 
