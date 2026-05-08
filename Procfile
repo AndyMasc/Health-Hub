@@ -1,1 +1,1 @@
-web: python manage.py migrate && python -m gunicorn HealthHub.wsgi:application --bind 0.0.0.0:$PORT --timeout 120 --workers 2
+web: cd HealthHub && python manage.py migrate && python -m gunicorn HealthHub.wsgi:application --bind 0.0.0.0:$PORT --timeout 120 --workers 2
