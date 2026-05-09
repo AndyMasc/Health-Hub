@@ -19,7 +19,7 @@ SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-change-this-in-production"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['healthhub.koyeb.app', '127.0.0.1', 'localhost', '*']
+ALLOWED_HOSTS = ['healthhub.koyeb.app', '127.0.0.1', 'localhost', '*.koyeb.app']
 
 LOGIN_URL = "authenticate:signin"
 
@@ -114,7 +114,7 @@ if all([db_name, db_user, db_password, db_host, db_port]):
             'HOST': db_host,
             'PORT': db_port,
             'OPTIONS': {
-                'sslmode': 'prefer',
+                'sslmode': 'require',
             },
         }
     }
@@ -143,12 +143,3 @@ USE_TZ = True
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Email configuration
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
-EMAIL_USE_SSL = False
