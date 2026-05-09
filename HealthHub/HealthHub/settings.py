@@ -114,7 +114,7 @@ if all([db_name, db_user, db_password, db_host, db_port]):
             'HOST': db_host,
             'PORT': db_port,
             'OPTIONS': {
-                'sslmode': 'require',
+                'sslmode': 'prefer',
             },
         }
     }
