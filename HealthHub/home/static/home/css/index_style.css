@@ -218,7 +218,9 @@ p {
 }
 .widget:hover {
     transform: translateY(-10px);
-    box-shadow: 0 4px 8px 0 rgb(204, 204, 204), 0 6px 20px 0 rgb(204, 204, 204);
+    box-shadow:
+        0 4px 8px 0 rgb(204, 204, 204),
+        0 6px 20px 0 rgb(204, 204, 204);
 }
 
 .problem-container a {
@@ -321,7 +323,8 @@ p {
     .navbar ul {
         display: none;
     }
-    .problem-container h1, .problem-container p {
+    .problem-container h1,
+    .problem-container p {
         text-align: center;
     }
 }
