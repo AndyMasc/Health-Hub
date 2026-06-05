@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 # Build stage: the -dev image includes tools needed to install packages.
-FROM dhi.io/python:3.14-alpine3.23-dev AS builder
+FROM dhi.io/python:3.13-alpine3.23-dev AS builder
 
 # Prevent Python from writing .pyc files to disk.
 ENV PYTHONDONTWRITEBYTECODE=1
