@@ -18,17 +18,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = [
-    "healthhub.koyeb.app",
-    "127.0.0.1",
-    "localhost",
-    "*.koyeb.app",
-    "*.railway.app",
-]
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 
 LOGIN_URL = "authenticate:signin"
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+CSRF_TRUSTED_ORIGINS = ["https://healthhub.koyeb.app"]
 
 # Security settings (enable when ready for production)
 if not DEBUG:
@@ -44,7 +41,6 @@ if not DEBUG:
     SECURE_BROWSER_XSS_FILTER = True
     SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
     X_FRAME_OPTIONS = "DENY"
-
 
 # Application definition
 INSTALLED_APPS = [
