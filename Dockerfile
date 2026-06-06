@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 # 1. Build stage: Install packages
-FROM dhi.io/python:3.13-alpine3.23-dev AS builder
+FROM python:3.13-alpine3.23-dev AS builder
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
@@ -26,7 +26,7 @@ EXPOSE 8000
 CMD ["python", "HealthHub/manage.py", "runserver", "0.0.0.0:8000"]
 
 # 3. Production stage (Minimal runtime)
-FROM dhi.io/python:3.13-alpine3.23 AS production
+FROM python:3.13-alpine3.23 AS production
 
 ENV PYTHONUNBUFFERED=1
 ENV PATH="/app/.venv/bin:$PATH"
