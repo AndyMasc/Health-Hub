@@ -1,5 +1,35 @@
 services:
   web:
-    build: .
+    build:
+      context: .
+      target: development
     ports:
-      - "8000:8000"
+      - "9000:8000"
+    environment:
+      # Django Base Core Settings
+      - DEBUG=False
+      - SECRET_KEY=kG8mN2pQxR5vY9bA3cF6hJ1nL4oW7eT0uI-dS_zXwVqMkHgPjByUiCrElOsAfZt
+
+      # Live External PostgreSQL Database Connections
+      - POSTGRES_HOST=ep-bitter-sunset-ap27l7ht.c-7.us-east-1.pg.koyeb.app
+      - POSTGRES_NAME=koyebdb
+      - POSTGRES_USER=koyeb-adm
+      - POSTGRES_PASSWORD=npg_slbCdo1EteO8
+      - POSTGRES_PORT=5432
+
+      # Integration Keys
+      - GEMINI_API_KEY=AIzaSyCT18RtzRoBDPUpb9Pm1AyluhGcDO5_m0A
+    develop:
+      watch:
+        - action: sync
+          path: HealthHub
+          target: /app/HealthHub
+          ignore:
+            - __pycache__/
+            - "*.pyc"
+            - .git/
+            - .venv/
+        - action: rebuild
+          path: pyproject.toml
+        - action: rebuild
+          path: uv.lock
