@@ -20,7 +20,13 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["healthhub.koyeb.app", "127.0.0.1", "localhost", "*.koyeb.app"]
+ALLOWED_HOSTS = [
+    "healthhub.koyeb.app",
+    "127.0.0.1",
+    "localhost",
+    "*.koyeb.app",
+    "0.0.0.0",
+]
 
 LOGIN_URL = "authenticate:signin"
 

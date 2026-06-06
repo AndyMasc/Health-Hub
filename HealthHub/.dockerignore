@@ -1,0 +1,21 @@
+# double * = anywhere in project
+
+# Virtual Environments
+**/.venv
+venv/
+env/
+
+# Environment Variables
+**/.env
+
+# IDEs and OS files
+**/.idea
+.DS_Store
+
+# Local Database
+db.sqlite3
+
+# Python Cache (Crucial for keeping image size small)
+__pycache__/
+*.pyc
+*.pyo
