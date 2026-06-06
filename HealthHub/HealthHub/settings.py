@@ -25,6 +25,7 @@ ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 LOGIN_URL = "authenticate:signin"
 
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+CSRF_TRUSTED_ORIGINS = ["https://healthhub.koyeb.app"]
 
 # Security settings (enable when ready for production)
 if not DEBUG:
