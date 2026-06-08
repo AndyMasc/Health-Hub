@@ -13,7 +13,7 @@ from .models import Doctor, Patient
 @login_required
 def account(request):
     form = UpdateUser(instance=request.user)
-    context = {"form": form}
+    context = {"form": form, "password": request.user.password}
     return render(request, "authenticate/account.html", context)
 
 
